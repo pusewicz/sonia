@@ -1,4 +1,8 @@
-# A sample Gemfile
 source :gemcutter
-#
-# gem "rails"
+
+gem "httparty"
+
+group :test do
+  gem "rspec"
+  gem "cucumber"
+end
