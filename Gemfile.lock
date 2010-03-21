@@ -1,0 +1,59 @@
+--- 
+dependencies: 
+  httparty: 
+    group: 
+    - :default
+    version: ">= 0"
+  em-websocket: 
+    group: 
+    - :default
+    version: ">= 0"
+  rspec: 
+    group: 
+    - :test
+    version: ">= 0"
+  twitter-stream: 
+    group: 
+    - :default
+    version: ">= 0"
+  eventmachine: 
+    group: 
+    - :default
+    version: ">= 0"
+  cucumber: 
+    group: 
+    - :test
+    version: ">= 0"
+specs: 
+- addressable: 
+    version: 2.1.1
+- builder: 
+    version: 2.1.2
+- crack: 
+    version: 0.1.6
+- diff-lcs: 
+    version: 1.1.2
+- json_pure: 
+    version: 1.2.3
+- polyglot: 
+    version: 0.3.0
+- term-ansicolor: 
+    version: 1.0.5
+- treetop: 
+    version: 1.4.4
+- cucumber: 
+    version: 0.6.3
+- eventmachine: 
+    version: 0.12.10
+- em-websocket: 
+    version: 0.0.5
+- httparty: 
+    version: 0.5.2
+- rspec: 
+    version: 1.3.0
+- twitter-stream: 
+    version: 0.1.4
+hash: 96d1078837036e3f1304193c1acc9aeb58df4452
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
