@@ -3,6 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <title>Sonia - Superawesome Dashboard</title>
+  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      function debug(str){ $("#debug").append("<p>"+str+"</p>"); };
+
+      ws = new WebSocket("ws://localhost:8080");
+      ws.onmessage = function(evt) { $("#msg").append("<p>"+evt.data+"</p>"); };
+      ws.onclose = function() { debug("socket closed"); };
+      ws.onopen = function() {
+        debug("connected...");
+        ws.send("hello server");
+      };
+    });
+  </script>
   <link rel="stylesheet" href="css/main.css" type="text/css" />
   <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -12,5 +26,7 @@
   <link rel="stylesheet" type="text/css" media="all" href="css/ie6.css"/><![endif]-->
 </head>
 <body>
+  <div id="debug"></div>
+  <div id="msg"></div>
 </body>
 </html>
