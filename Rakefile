@@ -5,14 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "sonia"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Superawesome Dashboard}
+    gem.description = %Q{Superawesome Dashboard}
     gem.email = "piotr@layer22.com"
     gem.homepage = "http://github.com/pusewicz/sonia"
     gem.authors = ["Piotr Usewicz"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "yard", ">= 0"
-    gem.add_development_dependency "cucumber", ">= 0"
+    # gem.add_development_dependency "rspec", ">= 1.2.9"
+    # gem.add_development_dependency "yard", ">= 0"
+    # gem.add_development_dependency "cucumber", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
