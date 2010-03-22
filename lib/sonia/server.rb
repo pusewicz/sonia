@@ -6,8 +6,10 @@ module Sonia
     extend self
 
     def run!
+      abort "#{self.class.name}: No username and password provided" unless ARGV[0] && ARGV[1]
+
       EventMachine.run {
-        @twitter = Sonia::Widgets::Twitter.new('pusewicz', 'hpcr20232')
+        @twitter = Sonia::Widgets::Twitter.new(ARGV[0], ARGV[1])
 
         @widgets = [@twitter]
 
