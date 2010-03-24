@@ -4,19 +4,36 @@ require 'json'
 module Sonia
   module Widgets
     class Twitter < Sonia::Widget
-      def initialize(username, password)
-        super()
+      def initialize( config )
+        super( config )
 
         @twitter = ::Twitter::JSONStream.connect(
-          :path => '/1/statuses/filter.json?track=fuck',
-          :auth => "#{username}:#{password}"
+          :path => "/1/statuses/filter.json?track=#{config[:track]}",
+          :auth => "#{config[:username]}:#{config[:password]}"
         )
 
         @twitter.each_item do |status|
+          #msg = "#{status['user']['screen_name']}: #{status['text']}"
           status = JSON.parse(status)
-          msg = "#{status['user']['screen_name']}: #{status['text']}"
-          push msg
+          push format_status( status )
         end
+      end
+
+      def format_status( status )
+        { :message => {
+            :widget => :twitter,
+            :text   => status['text'],
+            :user   => status['user']['screen_name'] 
+          }
+        }.to_json
+      end
+
+      def setup
+        { :Twitter => {
+            :nitems => @config[:nitems],
+            :title => @config[:title]
+          }
+        }
       end
     end
   end
