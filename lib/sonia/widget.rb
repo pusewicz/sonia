@@ -1,6 +1,12 @@
+require "yajl"
+
 module Sonia
   class Widget
     attr_reader :channel, :sid
+
+    def self.encoder
+      @encoder ||= Yajl::Encoder.new
+    end
 
     def initialize
       @channel = EM::Channel.new
@@ -15,9 +21,9 @@ module Sonia
     end
 
     def push(msg)
-      msg = "#{self.class.name}: #{msg}"
+      payload = { "widget" => self.class.name.split("::").last, "payload" => msg }
 
-      channel.push msg
+      channel.push self.class.encoder.encode({ "message" => payload })
     end
   end
 end
