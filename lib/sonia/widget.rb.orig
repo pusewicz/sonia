@@ -4,15 +4,15 @@ module Sonia
   class Widget
     attr_reader :channel, :sid, :config
 
+<<<<<<< HEAD
     def self.encoder
       @encoder ||= Yajl::Encoder.new
     end
-    
-    def self.decoder
-      @decoder ||= Yajl::Parser.new
-    end
 
-    def initialize(config)
+    def initialize
+=======
+    def initialize( config )
+>>>>>>> vicmargar/master
       @channel = EM::Channel.new
       @config = config
     end
@@ -26,13 +26,9 @@ module Sonia
     end
 
     def push(msg)
-      payload = { "widget" => self.widget_name, "payload" => msg }
+      payload = { "widget" => self.class.name.split("::").last, "payload" => msg }
 
       channel.push self.class.encoder.encode({ "message" => payload })
-    end
-    
-    def widget_name
-      self.class.name.split("::").last
     end
   end
 end
