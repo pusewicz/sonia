@@ -3,18 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <title>Sonia - Superawesome Dashboard</title>
-  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+  <script src="sonia.js"></script>
   <script>
-    $(document).ready(function(){
-      function debug(str){ $("#debug").append("<p>"+str+"</p>"); };
-
-      ws = new WebSocket("ws://localhost:8080");
-      ws.onmessage = function(evt) { $("#msg").append("<p>"+evt.data+"</p>"); };
-      ws.onclose = function() { debug("socket closed"); };
-      ws.onopen = function() {
-        debug("connected...");
-        ws.send("hello server");
-      };
+    $(document).observe("dom:loaded", function() {
+      console.log("Loaded...");
+      if ("WebSocket" in window) {
+        console.log("WebSocket supported.");
+        var sonia = new Sonia("ws://localhost:8080");
+      } else {
+        console.log("WebSocket not supported.");
+      }
     });
   </script>
   <link rel="stylesheet" href="css/main.css" type="text/css" />
