@@ -1,9 +1,10 @@
 module Sonia
   class Widget
-    attr_reader :channel, :sid
+    attr_reader :channel, :sid, :config
 
-    def initialize
+    def initialize( config )
       @channel = EM::Channel.new
+      @config = config
     end
 
     def subscribe!(websocket)
