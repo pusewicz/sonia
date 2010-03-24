@@ -1,22 +1,36 @@
 require "eventmachine"
 require "em-websocket"
+require "json"
 
 module Sonia
   module Server
     extend self
 
+    @@conf = {
+      :twitter => {
+        :title  => "Fuck yeah",
+        :nitems => 10,
+        :username => "ssuperawesom",
+        :password => "tooobvious",
+        :track => "obama"
+      }
+    }
+
     def run!
-      abort "#{self.class.name}: No username and password provided" unless ARGV[0] && ARGV[1]
-
       EventMachine.run {
-        @twitter = Sonia::Widgets::Twitter.new(ARGV[0], ARGV[1])
 
-        @widgets = [@twitter]
+        @widgets = []
+
+        @@conf.each_pair do | k, v |
+          class_name = "Sonia::Widgets::#{k.to_s.capitalize}"
+          @widgets << module_eval( class_name ).new( v )
+        end
 
         EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080, :debug => true) do |ws|
           ws.onopen    {
             @sids = @widgets.map { |widget| widget.subscribe!(ws) }
-            @widgets.each_with_index { |widget, i| widget.push "#{@sids[i]} connected!" }
+            setup = @widgets.map{ |widget| widget.setup }
+            ws.send( { :setup => setup }.to_json )
           }
 
           ws.onmessage { |msg|
