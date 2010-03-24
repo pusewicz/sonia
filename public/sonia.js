@@ -62,8 +62,7 @@ var Twitter = Class.create({
         this.title = config.title;
         this.max_items = config.nitems;
         this.messages = [];
-        this.element = document.createElement("div");
-        $("widgets").appendChild(this.element);
+        this.element = "article[widget=twitter]";
     },
     
     receive: function(message) {
@@ -76,12 +75,14 @@ var Twitter = Class.create({
     },
     
     update: function() {
-        var messages = document.createElement("div");
+        // remove existing messages
+        $$(this.element + ' p').invoke('remove');
+
         this.messages.each(function(message) {
-            var message_container = document.createElement("p");
-            message_container.innerHTML = "<b>" + message.user + "</b> says: " + message.text;
-            messages.appendChild(message_container);
+            var cont = new Element('p');
+            cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
+            cont.appendChild(document.createTextNode(message.text));
+            $$(this.element)[0].appendChild(cont);
         }.bind(this));
-        this.element.update(messages);
     }
 });
