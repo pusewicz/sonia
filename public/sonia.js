@@ -78,15 +78,12 @@ var Twitter = Class.create({
     this.update();
   },
 
-  update: function() {
-    // remove existing messages
-    this.element.childElements().invoke('remove');
-    this.messages.each(function(message) {
-      console.log("Rendering", message.user, message.text);
-      var cont = new Element('p');
-      cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
-      cont.appendChild(document.createTextNode(message.text));
-      this.element.appendChild(cont);
-    }.bind(this));
-  }
+        this.messages.each(function(message) {
+            var cont = new Element('p');
+            cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
+            cont.appendChild(new Element('img', { src: message.profile_image_url }));
+            cont.appendChild(document.createTextNode(message.text));            
+            $$(this.element)[0].appendChild(cont);
+        }.bind(this));
+    }
 });
