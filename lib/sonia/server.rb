@@ -29,7 +29,7 @@ module Sonia
         EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080, :debug => true) do |ws|
           ws.onopen    {
             @widgets.map { |widget| widget.subscribe!(ws) }
-            
+
             # TODO: Push configuration to the client here
             ws.send Yajl::Encoder.encode({ :setup => @widgets.map { |widget| widget.setup } })
           }
