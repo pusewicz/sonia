@@ -1,10 +1,19 @@
 body{
-    background-color: pink;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  font-family: "Optima";
 }
 
-div{
-    background-color: white;
-    margin: 16px;
-    padding: 16px;
-    border: 1px solid black;
+div.widget {
+  background-color: #cccccc;
+  margin: 16px;
+  color: black;
+  -webkit-border-radius: 5px;
+  padding: 10px;
+}
+
+div.widget h2 {
+  font-size: 24px;
+  font-weight: bold;
 }
