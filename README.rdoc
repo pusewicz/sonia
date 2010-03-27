@@ -10,8 +10,7 @@ Sonia is a Superawesome Dashboard
 == Running
 
     git clone git@github.com:pusewicz/sonia.git
-    bundle install
-    bundle exec ruby examples/server.rb twitter_username twitter_password
+    ./bin/sonia
     open public/index.html
 
 == Note on Patches/Pull Requests
