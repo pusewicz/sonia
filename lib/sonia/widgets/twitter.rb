@@ -69,21 +69,10 @@ module Sonia
 
       def format_status( status )
         {
-          :widget => self.widget_name,
           :text   => status['text'],
           :user   => status['user']['screen_name'],
           :profile_image_url => status['user']['profile_image_url']
         }
-      end
-
-      def setup
-          {
-            :widget => self.widget_name,
-            :config => {
-              :nitems => config[:nitems],
-              :title  => config[:title]
-            }
-          }
       end
     end
   end
