@@ -1,3 +1,4 @@
+console.log("Sonia");
 var Sonia = Class.create({
   widgets: {},
   initialize: function(host) {
@@ -77,13 +78,15 @@ var Twitter = Class.create({
     this.messages.push(message);
     this.update();
   },
-
-        this.messages.each(function(message) {
-            var cont = new Element('p');
-            cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
-            cont.appendChild(new Element('img', { src: message.profile_image_url }));
-            cont.appendChild(document.createTextNode(message.text));            
-            $$(this.element)[0].appendChild(cont);
-        }.bind(this));
-    }
+  update: function() {
+    this.element.childElements().invoke('remove');
+    this.messages.each(function(message) {
+      console.log("Rendering", message.user, message.text);
+      var cont = new Element('p');
+      cont.appendChild(new Element('img', { src: message.profile_image_url, width: 48, height: 48 }));
+      cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
+      cont.appendChild(document.createTextNode(message.text));
+      this.element.appendChild(cont);
+    }.bind(this));
+  }
 });
