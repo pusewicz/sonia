@@ -6,24 +6,37 @@ module Sonia
   module Server
     extend self
 
-    @@conf = {
-      "Twitter" => {
-        :title  => "Fuck yeah",
-        :nitems => 5,
-        :username => "ssuperawesom",
-        :password => "tooobvious",
-        :track => "obama"
-      }
-    }
+    @@conf = [
+            { 
+              "Twitter" => {
+                :title  => "Obama",
+                :nitems => 5,
+                :username => "ssuperawesom",
+                :password => "tooobvious",
+                :track => "obama"
+              }
+            },
+              { 
+                "Twitter" => {
+                  :title  => "Facebook",
+                  :nitems => 5,
+                  :username => "ssuperawesom",
+                  :password => "tooobvious",
+                  :track => "facebook"
+                }
+              }
+    ]
 
     def run!
       EventMachine.run {
 
         @widgets = []
 
-        @@conf.each_pair do | k, v |
-          class_name = "Sonia::Widgets::#{k.to_s}"
-          @widgets << module_eval( class_name ).new( v )
+        @@conf.each do |widget|
+          widget.each_pair do | k, v |
+            class_name = "Sonia::Widgets::#{k.to_s}"
+            @widgets << module_eval( class_name ).new( v )
+          end
         end
 
         EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080, :debug => true) do |ws|
