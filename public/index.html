@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Sonia - Superawesome Dashboard</title>
-    <link rel="stylesheet" href="sonia.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
-    <script type="text/javascript" src="sonia.js"></script>
+    <link rel="stylesheet" href="stylesheets/sonia.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="javascripts/prototype.js"></script>
+    <script type="text/javascript" src="javascripts/sonia.js"></script>
     <script type="text/javascript">
       $(document).observe("dom:loaded", function() {
-        console.log("Loaded...");
         if ("WebSocket" in window) {
           console.log("WebSocket supported.");
           var sonia = new Sonia("ws://localhost:8080");
