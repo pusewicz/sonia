@@ -8,6 +8,8 @@ group :runtime do
   gem "yajl-ruby"
   gem "bundler"
   gem "rake"
+  gem "configliere"
+  gem "optiflag"
 end
 
 group :test do

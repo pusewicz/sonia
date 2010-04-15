@@ -7,8 +7,10 @@ module Sonia
       def initialize( config )
         super( config )
 
+        puts "/1/statuses/filter.json?follow=#{config[:follow]}"
+
         @twitter = ::Twitter::JSONStream.connect(
-          :path => "/1/statuses/filter.json?track=#{config[:track]}",
+          :path => "/1/statuses/filter.json?follow=#{config[:follow]}",
           :auth => "#{config[:username]}:#{config[:password]}"
         )
 

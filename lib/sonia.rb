@@ -5,4 +5,3 @@ module Sonia
   autoload :Widget, 'sonia/widget'
   autoload :Widgets, 'sonia/widgets'
 end
-
