@@ -6,14 +6,36 @@ body{
 }
 
 div.widget {
+  width: 45%;
   background-color: #cccccc;
   margin: 16px;
   color: black;
   -webkit-border-radius: 5px;
   padding: 10px;
+  float: left;
 }
 
 div.widget h2 {
   font-size: 24px;
   font-weight: bold;
+}
+
+div.widget p {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin-bottom: 5px;
+}
+
+div.widget p:after {
+  clear: both;
+}
+
+div.widget img {
+  float: left;
+  margin: 5px;
+}
+
+div.widget a {
+  display: block;
 }
