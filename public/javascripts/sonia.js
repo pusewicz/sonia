@@ -104,6 +104,7 @@ var Twitter = Class.create(Widget, {
       cont.appendChild(new Element('img', { src: message.profile_image_url, width: 48, height: 48 }));
       cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
       cont.appendChild(document.createTextNode(message.text));
+      cont.appendChild(new Element('hr'))
       this.container.appendChild(cont);
     }.bind(this));
   },
