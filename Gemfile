@@ -2,12 +2,15 @@ source :gemcutter
 
 group :runtime do
   gem "httparty"
+  gem "twitter"
   gem "twitter-stream"
   gem "eventmachine"
   gem "em-websocket"
   gem "yajl-ruby"
   gem "bundler"
   gem "rake"
+  gem "configliere"
+  gem "optiflag"
 end
 
 group :test do

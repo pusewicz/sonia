@@ -60,7 +60,7 @@ var Dispatcher = Class.create({
 });
 
 var Widget = Class.create({
-  parent: $('widgets'),
+  parent: $("widgets"),
 
   initialize: function(widget_id, config) {
     this.widget_id = widget_id;
@@ -79,8 +79,8 @@ var Widget = Class.create({
   },
 
   buildContainer: function() {
-    this.container = new Element('div', {id: this.widget_id, class: "widget"});
-    $('widgets').appendChild(this.container);
+    this.container = new Element("div", {id: this.widget_id, className: "widget"});
+    $("widgets").appendChild(this.container);
   }
 });
 
@@ -103,7 +103,7 @@ var Twitter = Class.create(Widget, {
     this.messages.each(function(message) {
       var cont = new Element('p');
       cont.appendChild(new Element('img', { src: message.profile_image_url, width: 48, height: 48 }));
-      cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, class: 'author' }).update(message.user));
+      cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, className: 'author' }).update(message.user));
       cont.appendChild(document.createTextNode(message.text));
       cont.appendChild(new Element('hr' ))
       this.container.appendChild(cont);
@@ -113,8 +113,8 @@ var Twitter = Class.create(Widget, {
   buildHeader: function() {
     return(new Element("h2").update(this.title));
   },
-  
+
   buildWidgetIcon: function() {
-    return(new Element("img", {width: 34, height: 34, class: 'twitter_icon'}));
+    return(new Element("img", {width: 34, height: 34, className: 'twitter_icon'}));
   }
 });

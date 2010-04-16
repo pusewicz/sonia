@@ -12,6 +12,7 @@ end
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-require 'sonia'
+require "sonia"
+require "sonia/options"
 
-Sonia::Server.run!(*ARGV)
+Sonia::Server.run!(ARGV.flags)
