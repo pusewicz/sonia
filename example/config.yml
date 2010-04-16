@@ -1,6 +1,12 @@
 Twitter:
+  :name: twitter
   :title: Our Tweets
   :nitems: 5
   :username: ssuperawesom
   :password: tooobvious
-  :follow: pusewicz,barrym,wjlroe,svicente,DavidMcNicholl,marcusmitchell,lucaspiller
+  :follow: pusewicz,barrym,wjlroe,svicente,DavidMcNicholl,marcusmitchell,lucaspiller,toonzend
+  
+Tfl:
+  :name: tfl
+  :title: TfL Status
+  :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
