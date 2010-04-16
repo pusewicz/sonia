@@ -1,14 +1,27 @@
-body{
-  background-color: black;
+body {
+  background: black; /* fallback for older/unsupporting browsers */
+  background-image: -moz-linear-gradient(100% 19% 270deg,#000000, #3B3B3B)
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#666666), color-stop(.6,#333333))
   color: white;
   font-size: 14px;
   font-family: "Optima";
+}
+
+h1 {
+  width: 306px;
+  height: 49px;
+  text-indent: -10000px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-image: url('../images/project_sonia.png');
 }
 
 div.widget {
   width: 45%;
   background-color: #cccccc;
   margin: 16px;
+  margin-top: 70px;
   color: black;
   -webkit-border-radius: 5px;
   padding: 10px;
@@ -34,6 +47,13 @@ div.widget p:after {
 div.widget img {
   float: left;
   margin: 5px;
+}
+
+div.widget img.twitter_icon {
+  float: right !important;
+  border: none !important;
+  margin: 0;
+  background-image: url('../images/twitter-32x32.png');
 }
 
 div.widget a {
