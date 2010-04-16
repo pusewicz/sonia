@@ -5,5 +5,6 @@ module Sonia
       #symbol = ""
     #end
     autoload :Twitter, "sonia/widgets/twitter"
+    autoload :Tfl,     "sonia/widgets/tfl"
   end
 end

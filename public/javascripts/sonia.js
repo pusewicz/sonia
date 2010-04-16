@@ -66,7 +66,7 @@ var Widget = Class.create({
     this.widget_id = widget_id;
     this.title     = config.title;
     this.config    = config;
-    this.buildContainer();
+    this.buildContainer(config);
     this.update();
   },
 
@@ -78,8 +78,9 @@ var Widget = Class.create({
     console.log(this.title, "should redraw");
   },
 
-  buildContainer: function() {
+  buildContainer: function(config) {
     this.container = new Element("div", {id: this.widget_id, className: "widget"});
+    this.container.className += " "+config.name;
     $("widgets").appendChild(this.container);
   }
 });
@@ -115,6 +116,44 @@ var Twitter = Class.create(Widget, {
   },
 
   buildWidgetIcon: function() {
-    return(new Element("img", {width: 34, height: 34, className: 'twitter_icon'}));
+    return(new Element("img", {width: 32, height: 32, className: 'twitter_icon'}));
+  }
+});
+
+var Tfl = Class.create(Widget, {
+  initialize: function($super, widget_id, config) {
+    this.messages = [];
+    return($super(widget_id, config));
+  },
+  receive: function(message) {
+    if(this.messages.length >= this.config.nitems) {
+      this.messages.shift();
+    }
+    this.messages.push(message);
+    this.update();
+  },
+  update: function() {
+    this.container.childElements().invoke('remove');
+    this.container.appendChild(this.buildWidgetIcon());
+    this.container.appendChild(this.buildHeader());
+    this.messages.each(function(message) {
+      var cont = new Element('p', { id: message.id});
+      
+      station = new Element('span', { className: 'station' });
+      station.appendChild(document.createTextNode(message.name.replace("&amp;", "&")));
+      cont.appendChild(station);
+      
+      stat = new Element('span', { className: message.status.replace(" ", "_")});
+      stat.appendChild(document.createTextNode(message.status));
+      cont.appendChild(stat);
+      
+      this.container.appendChild(cont);
+    }.bind(this));
+  },
+  buildWidgetIcon: function() {
+    return(new Element("img", {width: 32, height: 32, className: 'tfl_icon'}));
+  },
+  buildHeader: function() {
+    return(new Element("h2").update(this.title));
   }
 });
