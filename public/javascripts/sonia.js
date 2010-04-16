@@ -98,18 +98,23 @@ var Twitter = Class.create(Widget, {
   },
   update: function() {
     this.container.childElements().invoke('remove');
+    this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
     this.messages.each(function(message) {
       var cont = new Element('p');
       cont.appendChild(new Element('img', { src: message.profile_image_url, width: 48, height: 48 }));
       cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, className: 'author' }).update(message.user));
       cont.appendChild(document.createTextNode(message.text));
-      cont.appendChild(new Element('hr'))
+      cont.appendChild(new Element('hr' ))
       this.container.appendChild(cont);
     }.bind(this));
   },
 
   buildHeader: function() {
     return(new Element("h2").update(this.title));
+  },
+  
+  buildWidgetIcon: function() {
+    return(new Element("img", {width: 34, height: 34, class: 'twitter_icon'}));
   }
 });
