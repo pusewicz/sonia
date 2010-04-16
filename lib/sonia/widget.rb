@@ -19,6 +19,9 @@ module Sonia
       @widget_id = Digest::SHA1.hexdigest([@channel, @config, Time.now.usec, self.class].join)
     end
 
+    # Used to push initial data after setup
+    def initial_push; end
+
     def subscribe!(websocket)
       @sid = channel.subscribe { |msg| websocket.send msg }
     end
