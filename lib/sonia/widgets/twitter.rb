@@ -1,24 +1,47 @@
+require 'twitter'
 require 'twitter/json_stream'
 require 'yajl'
 
 module Sonia
   module Widgets
     class Twitter < Sonia::Widget
-      def initialize( config )
-        super( config )
+      def initialize(config)
+        super(config)
 
-        puts "/1/statuses/filter.json?follow=#{config[:follow]}"
+        @auth ||= ::Twitter::HTTPAuth.new(config[:username], config[:password])
+        @client ||= ::Twitter::Base.new(@auth)
+
+        user_ids = lookup_user_ids_for(config[:follow])
+
+        user_ids.each do |user_name|
+          begin
+            @client.friendship_create(user_name, true)
+          rescue ::Twitter::General => e
+            puts e.message
+          end
+        end
 
         @twitter = ::Twitter::JSONStream.connect(
-          :path => "/1/statuses/filter.json?follow=#{config[:follow]}",
+          :path => "/1/statuses/filter.json?follow=#{user_ids}",
           :auth => "#{config[:username]}:#{config[:password]}"
         )
 
         @twitter.each_item do |status|
-          #msg = "#{status['user']['screen_name']}: #{status['text']}"
-          # puts status
-          # push format_status(self.class.decoder.parse(status))
           push format_status(Yajl::Parser.parse(status))
+        end
+      end
+
+      def initial_push
+        @client.friends_timeline({ :count => config[:nitems] }).each do |status|
+          push format_status(status)
+        end
+      end
+
+      private
+
+      def lookup_user_ids_for(usernames)
+        usernames.split(',').map do |user_name|
+          ::Twitter.user(user_name)[:id]
         end
       end
 

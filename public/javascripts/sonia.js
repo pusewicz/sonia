@@ -113,8 +113,8 @@ var Twitter = Class.create(Widget, {
   buildHeader: function() {
     return(new Element("h2").update(this.title));
   },
-  
+
   buildWidgetIcon: function() {
-    return(new Element("img", {width: 34, height: 34, class: 'twitter_icon'}));
+    return(new Element("img", {width: 34, height: 34, className: 'twitter_icon'}));
   }
 });
