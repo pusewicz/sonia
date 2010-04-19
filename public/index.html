@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <title>Sonia - Superawesome Dashboard</title>
-    <link rel="stylesheet" href="sonia.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
-    <script type="text/javascript" src="sonia.js"></script>
+    <link rel="stylesheet" href="blueprint/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="blueprint/grid.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="stylesheets/sonia.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="javascripts/prototype.js"></script>
+    <script type="text/javascript" src="javascripts/sonia.js"></script>
+    <script type="text/javascript" src="javascripts/dispatcher.js"></script>
+    <script type="text/javascript" src="javascripts/widget.js"></script>
+    <script type="text/javascript" src="javascripts/twitter.js"></script>
+    <script type="text/javascript" src="javascripts/tfl.js"></script>
     <script type="text/javascript">
       $(document).observe("dom:loaded", function() {
-        console.log("Loaded...");
         if ("WebSocket" in window) {
           console.log("WebSocket supported.");
           var sonia = new Sonia("ws://localhost:8080");
@@ -25,5 +30,6 @@
     <link rel="stylesheet" type="text/css" media="all" href="public/ie6.css"/><![endif]-->
   </head>
   <body id="widgets">
+    <h1>project sonia</h1>
   </body>
 </html>
