@@ -60,9 +60,8 @@ var Dispatcher = Class.create({
 });
 
 var Widget = Class.create({
-  parent: $("widgets"),
-
   initialize: function(widget_id, config) {
+    this.parent    = $("widgets");
     this.widget_id = widget_id;
     this.title     = config.title;
     this.config    = config;
@@ -79,9 +78,8 @@ var Widget = Class.create({
   },
 
   buildContainer: function(config) {
-    this.container = new Element("div", {id: this.widget_id, className: "widget"});
-    this.container.className += " "+config.name;
-    $("widgets").appendChild(this.container);
+    this.container = new Element("div", {id: this.widget_id, className: "widget " + config.name});
+    this.parent.appendChild(this.container);
   }
 });
 
@@ -90,11 +88,11 @@ var Twitter = Class.create(Widget, {
     this.messages = [];
     return($super(widget_id, config));
   },
-  receive: function(message) {
+  receive: function(payload) {
     if(this.messages.length >= this.config.nitems) {
       this.messages.shift();
     }
-    this.messages.push(message);
+    this.messages.push(payload);
     this.update();
   },
   update: function() {
@@ -125,11 +123,11 @@ var Tfl = Class.create(Widget, {
     this.messages = [];
     return($super(widget_id, config));
   },
-  receive: function(message) {
-    if(this.messages.length >= this.config.nitems) {
-      this.messages.shift();
-    }
-    this.messages.push(message);
+  receive: function(payload) {
+    this.messages = [];
+    payload.each(function(message) {
+      this.messages.push(message);
+    }.bind(this));
     this.update();
   },
   update: function() {
@@ -138,15 +136,15 @@ var Tfl = Class.create(Widget, {
     this.container.appendChild(this.buildHeader());
     this.messages.each(function(message) {
       var cont = new Element('p', { id: message.id});
-      
+
       station = new Element('span', { className: 'station' });
       station.appendChild(document.createTextNode(message.name.replace("&amp;", "&")));
       cont.appendChild(station);
-      
+
       stat = new Element('span', { className: message.status.replace(" ", "_")});
       stat.appendChild(document.createTextNode(message.status));
       cont.appendChild(stat);
-      
+
       this.container.appendChild(cont);
     }.bind(this));
   },

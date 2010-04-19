@@ -47,7 +47,7 @@ div.widget p:after {
 div.widget img {
   float: left;
   margin: 5px;
-  border: none !important;
+  border: none;
 }
 
 div.widget img.twitter_icon {
@@ -75,24 +75,25 @@ div.tfl p span {
   width: 50%;
   text-align: center;
   margin: 0;
-  padding: 5px;
   float: right;
+  line-height: 32px;
 }
 div.tfl p span.station {
-  float: none;
+  float: left;
 }
-div.tfl p span.good_service   { background-color: green; color: white; }
-div.tfl p span.severe_delays  { background-color: red; color: white;}
-div.tfl p span.minor_delays   { background-color: yellow; color: black; }
-div.widget p#bakerloo         { background-color: #963;}
-div.widget p#central          { background-color: #C03;}
-div.widget p#circle           { background-color: #FC0;}
-div.widget p#district         { background-color: #063; color: white;}
-div.widget p#docklands        { background-color: #099;}
-div.widget p#hammersmithcity  { background-color: #F9C;}
-div.widget p#jubilee          { background-color: #666;}
-div.widget p#metropolitan     { background-color: #903;}
-div.widget p#northern         { background-color: #000; color: white;}
-div.widget p#piccadilly       { background-color: #039; color: white;}
-div.widget p#victoria         { background-color: #39C;}
-div.widget p#waterloocity     { background-color: #6CC;}
+div.tfl p span.good_service   { background-color: green; color: white; text-transform: uppercase }
+div.tfl p span.severe_delays  { background-color: red; color: white; font-weight: bold; text-transform: uppercase }
+div.tfl p span.minor_delays   { background-color: yellow; color: black; text-transform: uppercase }
+div.tfl p span.unknown        { text-transform: uppercase }
+div.widget p#bakerloo         { background-color: #963; }
+div.widget p#central          { background-color: #C03; color: white}
+div.widget p#circle           { background-color: #FC0 }
+div.widget p#district         { background-color: #063; color: white}
+div.widget p#docklands        { background-color: #099; }
+div.widget p#hammersmithcity  { background-color: #F9C; }
+div.widget p#jubilee          { background-color: #666; color: white }
+div.widget p#metropolitan     { background-color: #903; color: white }
+div.widget p#northern         { background-color: #000; color: white; }
+div.widget p#piccadilly       { background-color: #039; color: white; }
+div.widget p#victoria         { background-color: #39C; }
+div.widget p#waterloocity     { background-color: #6CC; }
