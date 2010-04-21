@@ -51,7 +51,7 @@ module Sonia
 
       def follow_new_users(users)
         users.each do |user|
-          http = EventMachine::HttpRequest.new(create_friendship_url(user)).get(headers)
+          http = EventMachine::HttpRequest.new(create_friendship_url(user)).post(headers)
           http.callback {
             puts "Creating friendship with #{user}: #{http.response_header.status}"
           }
@@ -59,7 +59,7 @@ module Sonia
       end
 
       def follow_usernames
-        config[:follow].split(',') << "dougw"
+        config[:follow].split(',')
       end
 
       def extract_friends(response)
