@@ -10,3 +10,10 @@ Tfl:
   :name: tfl
   :title: TfL Status
   :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
+  
+Icinga:
+  :name: icinga
+  :username: icingaadmin
+  :password: icingaadmin
+  :title: Icinga Status
+  :url: "http://212.111.44.214/icinga/cgi-bin/tac.cgi"
