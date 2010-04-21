@@ -1,10 +1,9 @@
 require 'yajl'
-require 'httparty'
+require 'em-http'
 
 module Sonia
   module Widgets
     class Tfl < Sonia::Widget
-
       def initial_push
         fetch_data
         EventMachine::add_periodic_timer(150) { fetch_data }
@@ -22,11 +21,14 @@ module Sonia
 
       private
       def fetch_data
-        lines = Yajl::Parser.parse(HTTParty.get(config[:url]).to_s)["response"]["lines"].map do |line|
-           format_lines(line)
-        end
+        http = EventMachine::HttpRequest.new(config[:url]).get
+        http.callback {
+          lines = Yajl::Parser.parse(http.response)["response"]["lines"].map do |line|
+             format_lines(line)
+          end
 
-        push lines
+          push lines
+        }
       end
     end
   end
