@@ -26,6 +26,7 @@ var Tfl = Class.create(Widget, {
       cont.appendChild(stat);
 
       this.container.appendChild(cont);
+      // new Effect.Pulsate(this.container, { pulses: 2, duration: 1 });
     }.bind(this));
   },
   buildWidgetIcon: function() {

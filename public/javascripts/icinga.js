@@ -26,6 +26,7 @@ var Icinga = Class.create(Widget, {
       cont.appendChild(icinga_status);
 
       this.container.appendChild(cont);
+      // new Effect.Pulsate(this.container, { pulses: 2, duration: 1 });
     }.bind(this));
   },
   buildWidgetIcon: function() {

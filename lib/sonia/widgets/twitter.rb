@@ -22,7 +22,7 @@ module Sonia
         end
 
         @twitter = ::Twitter::JSONStream.connect(
-          :path => "/1/statuses/filter.json?follow=#{user_ids}",
+          :path => "/1/statuses/filter.json?follow=#{user_ids.join(",")}",
           :auth => "#{config[:username]}:#{config[:password]}"
         )
 

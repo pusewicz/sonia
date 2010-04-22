@@ -21,6 +21,7 @@ var Twitter = Class.create(Widget, {
       cont.appendChild(document.createTextNode(message.text));
       cont.appendChild(new Element('hr' ))
       this.container.appendChild(cont);
+      // new Effect.Pulsate(this.container, { pulses: 2, duration: 1 });
     }.bind(this));
   },
 
