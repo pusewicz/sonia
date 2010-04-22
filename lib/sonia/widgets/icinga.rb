@@ -1,5 +1,5 @@
-require 'httparty'
 require 'nokogiri'
+require 'em-http'
 
 module Sonia
   module Widgets
@@ -19,11 +19,18 @@ module Sonia
 
       private
       
+      def headers
+        { :head => { 'Authorization' => [config[:username], config[:password]] } }
+      end
+      
       def fetch_data
-        statuses = Nokogiri::HTML(HTTParty.get(config[:url], {:basic_auth => {:username => config[:username], :password => config[:password]}}).to_s).xpath("//td/a[contains(@class,'serviceHeader')]").map do |node|
-          format_status(node.content)
-        end
-        push statuses
+        http = EventMachine::HttpRequest.new(config[:url]).get(headers)
+        http.callback {
+          statuses = Nokogiri::HTML(http.response).xpath("//td/a[contains(@class,'serviceHeader')]").map do |node|
+            format_status(node.content)
+          end
+          push statuses
+        }
       end
       
     end # class

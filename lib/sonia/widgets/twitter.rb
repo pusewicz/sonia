@@ -1,48 +1,97 @@
-require 'twitter'
-require 'twitter/json_stream'
 require 'yajl'
+require 'twitter/json_stream'
 
 module Sonia
   module Widgets
     class Twitter < Sonia::Widget
+      FRIENDS_URL           = "http://api.twitter.com/1/statuses/friends/%s.json"
+      CREATE_FRIENDSHIP_URL = "http://api.twitter.com/1/friendships/create/%s.json?follow=true"
+      USER_LOOKUP_URL       = "http://api.twitter.com/1/users/lookup.json?screen_name=%s"
+      FRIENDS_TIMELINE_URL  = "http://api.twitter.com/1/statuses/friends_timeline.json?count=%s"
+
       def initialize(config)
         super(config)
 
-        @auth ||= ::Twitter::HTTPAuth.new(config[:username], config[:password])
-        @client ||= ::Twitter::Base.new(@auth)
+        http1 = EventMachine::HttpRequest.new(friends_url).get(headers)
+        http1.callback {
+          friends_usernames = extract_friends(http1.response)
 
-        user_ids = lookup_user_ids_for(config[:follow])
+          new_friends_to_follow = follow_usernames - friends_usernames
 
-        user_ids.each do |user_name|
-          begin
-            @client.friendship_create(user_name, true)
-          rescue ::Twitter::General => e
-            puts e.message
+          follow_new_users(new_friends_to_follow)
+
+          lookup_user_ids_for(follow_usernames) {
+            connect_to_stream
+          }
+        }
+      end
+
+      def initial_push
+        http = EventMachine::HttpRequest.new(friends_timeline_url).get(headers)
+        http.callback {
+          Yajl::Parser.parse(http.response).reverse.each do |status|
+            push format_status(status)
           end
-        end
+        }
+      end
 
-        @twitter = ::Twitter::JSONStream.connect(
-          :path => "/1/statuses/filter.json?follow=#{user_ids.join(",")}",
-          :auth => "#{config[:username]}:#{config[:password]}"
+      private
+      def connect_to_stream
+        @stream = ::Twitter::JSONStream.connect(
+          :path    => "/1/statuses/filter.json",
+          :content => "follow=#{@user_ids.join(',')}",
+          :method  => "POST",
+          :auth    => [config[:username], config[:password]].join(':')
         )
 
-        @twitter.each_item do |status|
+        @stream.each_item do |status|
           push format_status(Yajl::Parser.parse(status))
         end
       end
 
-      def initial_push
-        @client.friends_timeline({ :count => config[:nitems] }).each do |status|
-          push format_status(status)
+      def follow_new_users(users)
+        users.each do |user|
+          http = EventMachine::HttpRequest.new(create_friendship_url(user)).post(headers)
+          http.callback {
+            puts "Creating friendship with #{user}: #{http.response_header.status}"
+          }
         end
       end
 
-      private
+      def follow_usernames
+        config[:follow].split(',')
+      end
 
-      def lookup_user_ids_for(usernames)
-        usernames.split(',').map do |user_name|
-          ::Twitter.user(user_name)[:id]
-        end
+      def extract_friends(response)
+        Yajl::Parser.parse(response).map { |user| user["screen_name"] }
+      end
+
+      def headers
+        { :head => { 'Authorization' => [config[:username], config[:password]] } }
+      end
+
+      def create_friendship_url(user)
+        CREATE_FRIENDSHIP_URL % user
+      end
+
+      def friends_timeline_url
+        FRIENDS_TIMELINE_URL % config[:nitems]
+      end
+
+      def friends_url
+        FRIENDS_URL % config[:username]
+      end
+
+      def user_lookup_url(users)
+        USER_LOOKUP_URL % users.join(',')
+      end
+
+      def lookup_user_ids_for(usernames, &block)
+        http = EventMachine::HttpRequest.new(user_lookup_url(follow_usernames)).get(headers)
+        http.callback {
+          @user_ids = Yajl::Parser.parse(http.response).map { |e| e["id"] }
+          block.call
+        }
       end
 
 #       {
@@ -92,10 +141,10 @@ module Sonia
 #       }
 
 
-      def format_status( status )
+      def format_status(status)
         {
-          :text   => status['text'],
-          :user   => status['user']['screen_name'],
+          :text              => status['text'],
+          :user              => status['user']['screen_name'],
           :profile_image_url => status['user']['profile_image_url']
         }
       end
