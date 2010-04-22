@@ -7,7 +7,7 @@ module Sonia
 
       def initial_push
         fetch_data
-        EventMachine::add_periodic_timer(150) { fetch_data }
+        EventMachine::add_periodic_timer(61) { fetch_data }
       end
 
       def format_status(stat)

@@ -1,7 +1,10 @@
 body {
   background: black; /* fallback for older/unsupporting browsers */
-  background-image: -moz-linear-gradient(100% 19% 270deg,#000000, #3B3B3B)
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#666666), color-stop(.6,#333333))
+  background-image: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0.12, rgb(77,77,77)),
+    color-stop(0.59, rgb(0,0,0)));
   color: white;
   font-size: 14px;
   font-family: "Optima";
@@ -20,12 +23,26 @@ h1 {
 div.widget {
   width: 20%;
   background-color: #cccccc;
+  background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(255,255,255)),color-stop(1, rgb(148,148,148)));
   margin: 16px;
   margin-top: 70px;
   color: black;
-  -webkit-border-radius: 5px;
+  -webkit-border-radius: 10px;
   padding: 10px;
   float: left;
+}
+
+div.widget:hover {
+  -webkit-animation: 'wobble' 2s;
+}
+
+@keyframes 'wobble' {
+  0     { margin-left: 0; }
+  20%   { margin-left: -15px; }
+  40%   { margin-left: 15px; }
+  60%   { margin-left: -15px; }
+  80%   { margin-left: 15px; }
+  100%  { margin-left: 0px;}
 }
 
 div.widget h2 {
@@ -86,11 +103,15 @@ div.icinga p span {
 }
 div.icinga p span.count {
   float: left;
+  font-weight: bold;
 }
-div.icinga p span.status    { text-transform: uppercase }
+div.icinga p span.status    { text-transform: uppercase; font-weight: bold; }
 div.icinga p span.critical  { background-color: red; color: white; font-weight: bold }
-div.icinga p span.ok        { background-color: green; color: white }
-div.icinga p span.warning   { background-color: #FC0 }
+  div.icinga p span.ok        { background-color: green; color: white }
+  div.icinga p span.warning   { background-color: #FC0 }
+/*div.icinga p span.critical  { color: red; text-shadow: 0 0 5px red; }
+div.icinga p span.ok        { color: green; text-shadow: 0 0 5px green; }
+div.icinga p span.warning   { color: #FC0; text-shadow: 0 0 5px #FC0; }*/
 
 /* TfL Lines*/
 div.tfl p {
@@ -110,6 +131,8 @@ div.tfl p span.station {
 
 div.tfl p span.status         { text-transform: uppercase }
 div.tfl p span.good_service   { background-color: green; color: white }
+div.tfl p span.part_suspended { background-color: #963; color: white }
+div.tfl p span.suspended      { background-color: black; color: white }
 div.tfl p span.severe_delays  { background-color: red; color: white; font-weight: bold }
 div.tfl p span.minor_delays   { background-color: yellow; color: black }
 div.widget p#bakerloo         { background-color: #963; color: white }
