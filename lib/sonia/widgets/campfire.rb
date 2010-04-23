@@ -8,6 +8,7 @@ module Sonia
   module Widgets
     class Campfire < Sonia::Widget
       GRAVATAR_URL = "http://www.gravatar.com/avatar/"
+      TRANSCRIPT_URL = "%s/room/%s/transcript.json"
 
       def initialize(config)
         super(config)
@@ -17,16 +18,17 @@ module Sonia
 
         EventMachine::add_periodic_timer(150) { user_info }
       end
-      
-      # def initial_push
-      #   http = EventMachine::HttpRequest.new(@room_uri).get(headers)
-      #   http.callback {
-      #     Yajl::Parser.parse(http.response).each_pair do |json_message|
-      #       formatted = format_message(json_message)
-      #       push formatted unless formatted.nil?
-      #     end
-      #   }
-      # end
+
+      def initial_push
+        http = EventMachine::HttpRequest.new(transcript_url).get(headers)
+        http.callback {
+          messages = Yajl::Parser.parse(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
+          messages.each do |message|
+            formatted = format_message(message)
+            push formatted unless formatted.nil?
+          end
+        }
+      end
 
       private
       def connect_to_stream
@@ -73,6 +75,10 @@ module Sonia
       def user_gravatar(email)
         email_digest = Digest::MD5.hexdigest(email)
         "#{GRAVATAR_URL}#{email_digest}?d=identicon"
+      end
+
+      def transcript_url
+        TRANSCRIPT_URL % [config[:url], config[:room_id]]
       end
 
       def headers
