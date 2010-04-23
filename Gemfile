@@ -11,6 +11,7 @@ group :runtime do
   gem "configliere"
   gem "optiflag"
   gem "nokogiri"
+  gem "launchy"
 end
 
 group :test do
