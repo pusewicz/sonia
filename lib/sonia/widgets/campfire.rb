@@ -17,6 +17,16 @@ module Sonia
 
         EventMachine::add_periodic_timer(150) { user_info }
       end
+      
+      # def initial_push
+      #   http = EventMachine::HttpRequest.new(@room_uri).get(headers)
+      #   http.callback {
+      #     Yajl::Parser.parse(http.response).each_pair do |json_message|
+      #       formatted = format_message(json_message)
+      #       push formatted unless formatted.nil?
+      #     end
+      #   }
+      # end
 
       private
       def connect_to_stream
