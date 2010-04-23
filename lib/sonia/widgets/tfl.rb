@@ -24,9 +24,9 @@ module Sonia
         http = EventMachine::HttpRequest.new(config[:url]).get
         http.callback {
           lines = Yajl::Parser.parse(http.response)["response"]["lines"].map do |line|
-             format_lines(line)
+            puts line.inspect
+            format_lines(line)
           end
-
           push lines
         }
       end
