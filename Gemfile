@@ -10,6 +10,7 @@ group :runtime do
   gem "rake"
   gem "configliere"
   gem "optiflag"
+  gem "httparty"
 end
 
 group :test do

@@ -6,5 +6,6 @@ module Sonia
     #end
     autoload :Twitter, "sonia/widgets/twitter"
     autoload :Tfl,     "sonia/widgets/tfl"
+    autoload :Campfire, "sonia/widgets/campfire"
   end
 end

@@ -56,6 +56,12 @@ div.widget img.twitter_icon {
   background-image: url('../images/twitter-32x32.png');
 }
 
+div.widget img.campfire_icon {
+  float: right !important;
+  margin: 0;
+  background-image: url('../images/campfire-32x32.png');
+}
+
 div.widget img.tfl_icon {
   float: right !important;
   margin: 0;

@@ -10,3 +10,10 @@ Tfl:
   :name: tfl
   :title: TfL Status
   :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
+
+Campfire:
+  :name: campfire
+  :title: Campfire
+  :room_id: 1
+  :url: "http://your-group-subdomain.campfirenow.com"
+  :token: your-api-token
