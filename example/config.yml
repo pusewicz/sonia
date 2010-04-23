@@ -5,22 +5,23 @@ Twitter:
   :username: ssuperawesom
   :password: tooobvious
   :follow: pusewicz,barrym,wjlroe,svicente,DavidMcNicholl,marcusmitchell,lucaspiller,toonzend,twittlefish
-  
+
 Tfl:
   :name: tfl
   :title: TfL Status
   :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
 
 Campfire:
+  :nitems: 5
   :name: campfire
   :title: Campfire
-  :room_id: 119467
-  :url: "https://migcan.campfirenow.com"
-  :token: 6feef4b71d4fadfe4e7e26e3f4063008e5c59917
+  :room_id: 1
+  :url: "https://sample.campfirenow.com"
+  :token: your_api_key
 
 Icinga:
   :name: icinga
   :username: icingaadmin
   :password: icingaadmin
   :title: Icinga Status
-  :url: "http://212.111.44.214/icinga/cgi-bin/tac.cgi"
+  :url: "http://localhost/icinga/cgi-bin/tac.cgi"
