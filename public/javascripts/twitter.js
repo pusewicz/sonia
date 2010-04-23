@@ -11,6 +11,7 @@ var Twitter = Class.create(Widget, {
     this.update();
   },
   update: function() {
+    new Draggable($(this.container));
     this.container.childElements().invoke('remove');
     this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
@@ -18,7 +19,7 @@ var Twitter = Class.create(Widget, {
       var cont = new Element('p');
       cont.appendChild(new Element('img', { src: message.profile_image_url }));
       cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, className: 'author' }).update(message.user));
-      cont.appendChild(document.createTextNode(message.text));
+      cont.appendChild(document.createTextNode(message.text.replace(/http.*\w/i,"")));
       cont.appendChild(new Element('hr' ))
       this.container.appendChild(cont);
       // new Effect.Pulsate(this.container, { pulses: 2, duration: 1 });
