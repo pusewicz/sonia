@@ -25,7 +25,7 @@ div.widget {
   background-color: #cccccc;
   background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(255,255,255)),color-stop(1, rgb(148,148,148)));
   margin: 16px;
-  margin-top: 70px;
+  margin-top: 80px;
   color: black;
   -webkit-border-radius: 10px;
   padding: 10px;
@@ -68,8 +68,12 @@ div.widget img.icon {
   right: -10px;
 }
 
-div.widget img.twitter {
-/*  background-image: url('../images/twitter.png');*/
+div.widget img.campfire_icon {
+/*  background-image: url('../images/campfire-32x32.png');*/
+}
+
+div.widget img.tfl_icon {
+/*  background-image: url('../images/tfl-32x32.png');*/
 }
 
 div.widget img.tfl {

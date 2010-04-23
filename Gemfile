@@ -2,7 +2,6 @@ source :gemcutter
 
 group :runtime do
   gem "twitter-stream"
-  gem "httparty"
   gem "eventmachine"
   gem "em-websocket"
   gem "em-http-request"

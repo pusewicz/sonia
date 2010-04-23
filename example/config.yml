@@ -10,7 +10,14 @@ Tfl:
   :name: tfl
   :title: TfL Status
   :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
-  
+
+Campfire:
+  :name: campfire
+  :title: Campfire
+  :room_id: 119467
+  :url: "https://migcan.campfirenow.com"
+  :token: 6feef4b71d4fadfe4e7e26e3f4063008e5c59917
+
 Icinga:
   :name: icinga
   :username: icingaadmin

@@ -1,4 +1,5 @@
 require 'yajl'
+require 'em-http'
 require 'twitter/json_stream'
 
 module Sonia
