@@ -14,5 +14,9 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require "sonia"
 require "sonia/options"
+require "sonia"
+require "launchy"
 
-Sonia::Server.run!(ARGV.flags)
+Sonia::Server.run!(ARGV.flags) do
+  Launchy::Browser.run("file://" + File.expand_path(File.join("public/index.html")))
+end

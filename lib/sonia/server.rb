@@ -9,7 +9,8 @@ module Sonia
   module Server
     extend self
 
-    def run!(options)
+    def run!(options, &block)
+      @start_block = block
       configure(options)
       serve
     end
@@ -51,6 +52,8 @@ module Sonia
             @widgets.each { |widget| widget.unsubscribe! }
           }
         end
+
+        @start_block.call if @start_block
 
         puts "WebSocket Server running"
       }
