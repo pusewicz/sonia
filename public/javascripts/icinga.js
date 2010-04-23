@@ -17,7 +17,7 @@ var Icinga = Class.create(Widget, {
     this.messages.each(function(message) {
       var cont = new Element('p', { id: message.id});
 
-      icinga_count = new Element('span', { className: 'count' });
+      icinga_count = new Element('span', { className: 'count '  + message.status.replace(" ", "_").toLowerCase()});
       icinga_count.appendChild(document.createTextNode(message.count));
       cont.appendChild(icinga_count);
 
@@ -30,7 +30,7 @@ var Icinga = Class.create(Widget, {
     }.bind(this));
   },
   buildWidgetIcon: function() {
-    return(new Element("img", {width: 32, height: 32, className: 'icinga_icon'}));
+    return(new Element("img", {src: "images/icinga.png", width: 32, height: 32, className: 'icinga icon'}));
   },
   buildHeader: function() {
     return(new Element("h2").update(this.title));

@@ -32,17 +32,8 @@ div.widget {
   float: left;
 }
 
-div.widget:hover {
-  -webkit-animation: 'wobble' 2s;
-}
-
-@keyframes 'wobble' {
-  0     { margin-left: 0; }
-  20%   { margin-left: -15px; }
-  40%   { margin-left: 15px; }
-  60%   { margin-left: -15px; }
-  80%   { margin-left: 15px; }
-  100%  { margin-left: 0px;}
+div.widget p hr {
+  margin: 0;
 }
 
 div.widget h2 {
@@ -64,25 +55,29 @@ div.widget p:after {
 div.widget img {
   float: left;
   margin: 5px;
-  border: none;
+  border: 0px !important;
 }
 
-div.widget img.twitter_icon {
+div.widget img.icon {
   float: right !important;
   margin: 0;
-  background-image: url('../images/twitter-32x32.png');
+  position: relative;
+  width: 64px;
+  height: 64px;
+  top: -35px;
+  right: -10px;
 }
 
-div.widget img.tfl_icon {
-  float: right !important;
-  margin: 0;
-  background-image: url('../images/tfl-32x32.png');
+div.widget img.twitter {
+/*  background-image: url('../images/twitter.png');*/
 }
 
-div.widget img.icinga_icon {
-  float: right !important;
-  margin: 0;
-  background-image: url('../images/icinga-32x32.png');
+div.widget img.tfl {
+/*  background-image: url('../images/tfl-32x32.png');*/
+}
+
+div.widget img.icinga {
+/*  background-image: url('../images/icinga-32x32.png');*/
 }
 
 div.widget a {
@@ -104,14 +99,16 @@ div.icinga p span {
 div.icinga p span.count {
   float: left;
   font-weight: bold;
+  -webkit-border-radius: 16px 0 0 16px;
 }
-div.icinga p span.status    { text-transform: uppercase; font-weight: bold; }
+div.icinga p span.status    { 
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-border-radius: 0 16px 16px 0;
+}
 div.icinga p span.critical  { background-color: red; color: white; font-weight: bold }
-  div.icinga p span.ok        { background-color: green; color: white }
-  div.icinga p span.warning   { background-color: #FC0 }
-/*div.icinga p span.critical  { color: red; text-shadow: 0 0 5px red; }
-div.icinga p span.ok        { color: green; text-shadow: 0 0 5px green; }
-div.icinga p span.warning   { color: #FC0; text-shadow: 0 0 5px #FC0; }*/
+div.icinga p span.ok        { background-color: green; color: white }
+div.icinga p span.warning   { background-color: #FC0 }
 
 /* TfL Lines*/
 div.tfl p {
@@ -129,12 +126,13 @@ div.tfl p span.station {
   float: left;
 }
 
-div.tfl p span.status         { text-transform: uppercase }
+div.tfl p span.status         { text-transform: uppercase; }
 div.tfl p span.good_service   { background-color: green; color: white }
 div.tfl p span.part_suspended { background-color: #963; color: white }
 div.tfl p span.suspended      { background-color: black; color: white }
 div.tfl p span.severe_delays  { background-color: red; color: white; font-weight: bold }
 div.tfl p span.minor_delays   { background-color: yellow; color: black }
+div.tfl p span.unknown        { background-color: none; color: black }
 div.widget p#bakerloo         { background-color: #963; color: white }
 div.widget p#central          { background-color: #C03; color: white}
 div.widget p#circle           { background-color: #FC0 }
