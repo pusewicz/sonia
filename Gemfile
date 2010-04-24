@@ -12,6 +12,9 @@ group :runtime do
   gem "optiflag"
   gem "nokogiri"
   gem "launchy"
+  gem "thin"
+  gem "sinatra"
+  gem "haml"
 end
 
 group :test do
