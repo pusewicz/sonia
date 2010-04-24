@@ -1,4 +1,3 @@
-require 'yajl'
 require 'em-http'
 require 'twitter/json_stream'
 
@@ -30,7 +29,7 @@ module Sonia
       def initial_push
         http = EventMachine::HttpRequest.new(friends_timeline_url).get(headers)
         http.callback {
-          Yajl::Parser.parse(http.response).reverse.each do |status|
+          parse_json(http.response).reverse.each do |status|
             push format_status(status)
           end
         }
@@ -46,7 +45,7 @@ module Sonia
         )
 
         @stream.each_item do |status|
-          push format_status(Yajl::Parser.parse(status))
+          push format_status(parse_json(status))
         end
       end
 
@@ -64,7 +63,7 @@ module Sonia
       end
 
       def extract_friends(response)
-        Yajl::Parser.parse(response).map { |user| user["screen_name"] }
+        parse_json(response).map { |user| user["screen_name"] }
       end
 
       def headers
@@ -90,7 +89,7 @@ module Sonia
       def lookup_user_ids_for(usernames, &block)
         http = EventMachine::HttpRequest.new(user_lookup_url(follow_usernames)).get(headers)
         http.callback {
-          @user_ids = Yajl::Parser.parse(http.response).map { |e| e["id"] }
+          @user_ids = parse_json(http.response).map { |e| e["id"] }
           block.call
         }
       end
@@ -140,7 +139,6 @@ module Sonia
 #         "created_at":"Thu Mar 25 18:22:14 +0000 2010",
 #         "truncated":false
 #       }
-
 
       def format_status(status)
         {
