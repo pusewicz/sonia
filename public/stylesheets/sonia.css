@@ -43,6 +43,10 @@ div.widget h2 {
   font-weight: bold;
 }
 
+div.widget .author {
+  font-weight: bold;
+}
+
 div.widget p {
   position: relative;
   width: 100%;
