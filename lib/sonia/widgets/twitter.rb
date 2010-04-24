@@ -11,27 +11,15 @@ module Sonia
 
       def initialize(config)
         super(config)
-
-        http1 = EventMachine::HttpRequest.new(friends_url).get(headers)
-        http1.callback {
-          friends_usernames = extract_friends(http1.response)
-
-          new_friends_to_follow = follow_usernames - friends_usernames
-
-          follow_new_users(new_friends_to_follow)
-
-          lookup_user_ids_for(follow_usernames) {
-            connect_to_stream
-          }
-        }
+        manage_friends
       end
 
       def initial_push
+        log.info(widget_name) { "Polling `#{friends_timeline_url}'" }
         http = EventMachine::HttpRequest.new(friends_timeline_url).get(headers)
+        http.errback { log_fatal_error(http) }
         http.callback {
-          parse_json(http.response).reverse.each do |status|
-            push format_status(status)
-          end
+          handle_initial_push(http)
         }
       end
 
@@ -47,14 +35,73 @@ module Sonia
         @stream.each_item do |status|
           push format_status(parse_json(status))
         end
+      ensure
+        log.info(widget_name) { "Connected to stream #{@stream.inspect}" }
+      end
+
+      def manage_friends
+        log.info(widget_name) { "Polling `#{friends_url}'" }
+        http = EventMachine::HttpRequest.new(friends_url).get(headers)
+        http.errback { log_fatal_error(http) }
+        http.callback {
+          handle_friends_response(http)
+        }
+      rescue => e
+        log_backtrace(e)
+      end
+
+      def handle_friends_response(http)
+        if http.response_header.status == 200
+          friends_usernames = extract_friends(http.response)
+
+          new_friends_to_follow = follow_usernames - friends_usernames
+
+          follow_new_users(new_friends_to_follow)
+
+          lookup_user_ids_for(follow_usernames) {
+            connect_to_stream
+          }
+        else
+          log_unsuccessful_response_body(http1.response)
+        end
+      rescue => e
+        log_backtrace(e)
+      end
+
+      def handle_initial_push(http)
+        if http.response_header.status == 200
+          parse_json(http.response).reverse.each do |status|
+            push format_status(status)
+          end
+        else
+          log_unsuccessful_response_body(http.response)
+        end
+      rescue => e
+        log_backtrace(e)
       end
 
       def follow_new_users(users)
-        users.each do |user|
-          http = EventMachine::HttpRequest.new(create_friendship_url(user)).post(headers)
-          http.callback {
-            puts "Creating friendship with #{user}: #{http.response_header.status}"
-          }
+        if users.any?
+          log.info(widget_name) { "Creating new friendships with #{users.join(", ")}" }
+          users.each do |user|
+            url = create_friendship_url(user)
+            log.info(widget_name) { "Polling `#{url}'" }
+            http = EventMachine::HttpRequest.new(url).post(headers)
+            http.errback { log_fatal_error(http) }
+            http.callback {
+              handle_follow_new_users_response(http)
+            }
+          end
+        else
+          log.info(widget_name) { "No new friendships to create, already following #{follow_usernames.join(', ')}" }
+        end
+      end
+
+      def handle_follow_new_users_response(http)
+        if http.response_header.status == 200
+          log.info(widget_name) { "Created friendship with #{user}" }
+        else
+          log_unsuccessful_response_body(http.response)
         end
       end
 
@@ -87,18 +134,31 @@ module Sonia
       end
 
       def lookup_user_ids_for(usernames, &block)
-        http = EventMachine::HttpRequest.new(user_lookup_url(follow_usernames)).get(headers)
+        url = user_lookup_url(follow_usernames)
+        log.info(widget_name) { "Polling `#{url}'" }
+        http = EventMachine::HttpRequest.new(url).get(headers)
+        http.errback { log_fatal_error(http) }
         http.callback {
+          handle_user_ids_response(http, block)
+        }
+      end
+
+      def handle_user_ids_response(http, block)
+        if http.response_header.status == 200
           @user_ids = parse_json(http.response).map { |e| e["id"] }
           block.call
-        }
+        else
+          log_unsuccessful_response_body(http.response)
+        end
+      rescue => e
+        log_backtrace(e)
       end
 
 #       {
 #         "in_reply_to_status_id":11025304529,
 #         "text":"@weembow LOL 'I HATE EVERYTHING BUT ANGELA AND WEED' when the fuck did i do that hahahaha",
 #         "place":null,
-#         "in_reply_to_user_id":26580764,
+#       han  "in_reply_to_user_id":26580764,
 #         "source":"web",
 #         "coordinates":null,
 #         "favorited":false,

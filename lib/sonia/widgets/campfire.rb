@@ -9,9 +9,13 @@ module Sonia
       GRAVATAR_URL = "http://www.gravatar.com/avatar/"
       TRANSCRIPT_URL = "%s/room/%s/transcript.json"
 
+      attr_reader :room_uri
+
       def initialize(config)
         super(config)
+        @users    = {}
         @room_uri = URI.encode("#{config[:url]}/room/#{config[:room_id]}.json")
+
         user_info
         connect_to_stream
 
@@ -19,13 +23,11 @@ module Sonia
       end
 
       def initial_push
+        log.info(widget_name) { "Polling `#{transcript_url}'" }
         http = EventMachine::HttpRequest.new(transcript_url).get(headers)
+        http.errback { log_fatal_error(http) }
         http.callback {
-          messages = parser.parse(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
-          messages.each do |message|
-            formatted = format_message(message)
-            push formatted unless formatted.nil?
-          end
+          handle_initial_response(http)
         }
       end
 
@@ -42,6 +44,22 @@ module Sonia
           formatted = format_message(json_message)
           push formatted unless formatted.nil?
         end
+      ensure
+        log.info(widget_name) { "Connected to stream #{@stream.inspect}" }
+      end
+
+      def handle_initial_response(http)
+        if http.response_header.status == 200
+          messages = parse_json(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
+          messages.each do |message|
+            formatted = format_message(message)
+            push formatted unless formatted.nil?
+          end
+        else
+          log_unsuccessful_response_body(http.response)
+        end
+      rescue => e
+        log_backtrace(e)
       end
 
       def format_message(message)
@@ -50,8 +68,8 @@ module Sonia
           img = user.nil? ? '' : user_gravatar(user[:email])
           name = user.nil? ? 'Unknown' : user[:name]
           return {
-            :body => message['body'],
-            :user => name,
+            :body   => message['body'],
+            :user   => name,
             :avatar => img
           }
         end
@@ -59,16 +77,27 @@ module Sonia
       end
 
       def user_info
-        @users ||= {}
-        http = EventMachine::HttpRequest.new(@room_uri).get(headers)
+        log.info(widget_name) { "Polling `#{room_uri}'" }
+        http = EventMachine::HttpRequest.new(room_uri).get(headers)
+        http.errback { log_fatal_error(http) }
         http.callback {
+          handle_user_info_response(http)
+        }
+      end
+
+      def handle_user_info_response(http)
+        if http.response_header.status == 200
           parse_json(http.response)['room']['users'].each do |user|
             @users[user['id']] = {
               :name  => user['name'],
               :email => user['email_address']
             }
           end
-        }
+        else
+          log_unsuccessful_response_body(http.response)
+        end
+      rescue => e
+        log_backtrace(e)
       end
 
       def user_gravatar(email)
