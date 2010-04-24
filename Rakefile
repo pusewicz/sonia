@@ -1,7 +1,6 @@
 require 'rubygems'
-require 'rake'
-
 require 'bundler'
+
 begin
   Bundler.setup
 rescue Bundler::BundlerError => e
@@ -9,6 +8,8 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
+
+require 'rake'
 
 begin
   require 'jeweler'
