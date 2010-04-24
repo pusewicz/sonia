@@ -23,7 +23,7 @@ module Sonia
       end
 
       def initial_push
-        log.info(widget_name) { "Polling `#{transcript_url}'" }
+        log_info "Polling `#{transcript_url}'"
         http = EventMachine::HttpRequest.new(transcript_url).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {
@@ -45,7 +45,7 @@ module Sonia
           push formatted unless formatted.nil?
         end
       ensure
-        log.info(widget_name) { "Connected to stream #{@stream.inspect}" }
+        log_info "Connected to stream #{@stream.inspect}"
       end
 
       def handle_initial_response(http)
@@ -77,7 +77,7 @@ module Sonia
       end
 
       def user_info
-        log.info(widget_name) { "Polling `#{room_uri}'" }
+        log_info "Polling `#{room_uri}'"
         http = EventMachine::HttpRequest.new(room_uri).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {

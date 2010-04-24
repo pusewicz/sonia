@@ -76,5 +76,9 @@ module Sonia
     def log_backtrace(exception)
       log.fatal(widget_name) { [exception.message, exception.backtrace].join("\n") }
     end
+
+    def log_info(message)
+      log.info(widget_name) { message }
+    end
   end
 end

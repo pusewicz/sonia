@@ -28,7 +28,7 @@ module Sonia
       end
 
       def fetch_data
-        log.info(widget_name) { "Polling `#{service_url}'" }
+        log_info "Polling `#{service_url}'"
         http = EventMachine::HttpRequest.new(service_url).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {
