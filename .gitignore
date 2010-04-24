@@ -4,4 +4,4 @@ log/*.log
 tmp/**/*
 .DS_Store
 *~
-
+example/config.yml
