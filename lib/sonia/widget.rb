@@ -64,5 +64,17 @@ module Sonia
         :config    => self.config
       }
     end
+
+    def log_unsuccessful_response_body(response_body)
+      log.warn(widget_name) { "Bad response: #{response_body.inspect}" }
+    end
+
+    def log_fatal_error(http)
+      log.fatal(widget_name) { http.inspect }
+    end
+
+    def log_backtrace(exception)
+      log.fatal(widget_name) { [exception.message, exception.backtrace].join("\n") }
+    end
   end
 end
