@@ -1,4 +1,3 @@
-require 'yajl'
 require 'twitter/json_stream'
 require 'uri'
 require 'em-http'
@@ -22,7 +21,7 @@ module Sonia
       def initial_push
         http = EventMachine::HttpRequest.new(transcript_url).get(headers)
         http.callback {
-          messages = Yajl::Parser.parse(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
+          messages = parser.parse(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
           messages.each do |message|
             formatted = format_message(message)
             push formatted unless formatted.nil?
@@ -39,7 +38,7 @@ module Sonia
           )
 
         @stream.each_item do |message|
-          json_message = Yajl::Parser.parse(message)
+          json_message = parse_json(message)
           formatted = format_message(json_message)
           push formatted unless formatted.nil?
         end
@@ -63,7 +62,7 @@ module Sonia
         @users ||= {}
         http = EventMachine::HttpRequest.new(@room_uri).get(headers)
         http.callback {
-          Yajl::Parser.parse(http.response)['room']['users'].each do |user|
+          parse_json(http.response)['room']['users'].each do |user|
             @users[user['id']] = {
               :name  => user['name'],
               :email => user['email_address']

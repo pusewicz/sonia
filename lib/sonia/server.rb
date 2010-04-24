@@ -9,6 +9,9 @@ module Sonia
   module Server
     extend self
 
+    HOST = "0.0.0.0"
+    PORT = 8080
+
     def run!(options, &block)
       @start_block = block
       configure(options)
@@ -25,38 +28,61 @@ module Sonia
       @@config
     end
 
+    def log
+      Sonia.log
+    end
+
     def serve
       EventMachine.run {
 
-        @widgets = []
+        initialize_widgets
 
-        config.each do |widget, config|
-          class_name = "Sonia::Widgets::#{widget.to_s}"
-          @widgets << module_eval(class_name).new(config)
-        end
-
-        EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080, :debug => true) do |ws|
+        EventMachine::WebSocket.start(websocket_options) do |ws|
           ws.onopen {
             @widgets.map { |widget| widget.subscribe!(ws) }
-            ws.send Yajl::Encoder.encode({ :setup => @widgets.map { |widget| widget.setup } })
-            @widgets.each { |widget| widget.initial_push }
+
+            setup_message = { :setup => @widgets.map { |widget| widget.setup } }
+            ws.send Yajl::Encoder.encode(setup_message)
+
+            log.info("Server") { "Sent setup #{setup_message.inspect}" }
+
+            @widgets.each { |widget|
+              if widget.respond_to?(:initial_push)
+                log.info(widget.widget_name) { "Sending initial push" }
+                widget.initial_push
+              end
+            }
           }
 
-          ws.onmessage { |msg|
-            @widgets.each do |widget|
-              widget.push "<#{@sids}>: #{msg}"
-            end
-          }
+          #ws.onmessage { |msg|
+            #@widgets.each do |widget|
+              #widget.push "<#{@sids}>: #{msg}"
+            #end
+          #}
 
           ws.onclose {
             @widgets.each { |widget| widget.unsubscribe! }
           }
         end
 
-        @start_block.call if @start_block
+        @start_block.call
 
-        puts "WebSocket Server running"
+        log.info("Server") { "WebSocket Server running at #{websocket_options[:host]}:#{websocket_options[:port]}" }
       }
+    end
+
+    def initialize_widgets
+      @widgets = []
+
+      config.each do |widget, config|
+        class_name = "Sonia::Widgets::#{widget.to_s}"
+        log.info("Server") { "Created widget #{widget} with #{config.inspect}" }
+        @widgets << module_eval(class_name).new(config)
+      end
+    end
+
+    def websocket_options
+      { :host => HOST, :port => PORT }
     end
   end
 end
