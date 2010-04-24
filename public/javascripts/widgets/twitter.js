@@ -18,7 +18,7 @@ var Twitter = Class.create(Widget, {
     this.messages.reverse(false).each(function(message) {
       var cont = new Element('p');
       cont.appendChild(new Element('img', { src: message.profile_image_url }));
-      cont.appendChild(new Element('a', { href: 'http://www.twitter.com/' + message.user, className: 'author' }).update(message.user));
+      cont.appendChild(new Element('div', { className: 'author' }).update(message.user));
       cont.appendChild(document.createTextNode(message.text.replace(/http.*\w/i,"")));
       cont.appendChild(new Element('hr' ))
       this.container.appendChild(cont);
