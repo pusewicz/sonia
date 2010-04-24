@@ -7,7 +7,7 @@ module Sonia
 
       def initial_push
         fetch_data
-        EventMachine::add_periodic_timer(61) { fetch_data }
+        EventMachine::add_periodic_timer(60) { fetch_data }
       end
 
       def format_status(stat)
@@ -18,11 +18,11 @@ module Sonia
       end
 
       private
-      
+
       def headers
         { :head => { 'Authorization' => [config[:username], config[:password]] } }
       end
-      
+
       def fetch_data
         http = EventMachine::HttpRequest.new(config[:url]).get(headers)
         http.callback {
@@ -32,7 +32,7 @@ module Sonia
           push statuses
         }
       end
-      
+
     end # class
   end # module
 end # module
