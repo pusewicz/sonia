@@ -17,7 +17,7 @@ h1 {
   position: absolute;
   right: 10px;
   top: 10px;
-  background-image: url('../images/project_sonia.png');
+  background-image: url('/images/project_sonia.png');
 }
 
 div.widget {

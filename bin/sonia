@@ -17,5 +17,5 @@ require "sonia/options"
 require "launchy"
 
 Sonia::Server.run!(ARGV.flags) do
-  Launchy::Browser.run("file://" + File.expand_path(File.join("public/index.html")))
+  Launchy::Browser.run(Sonia::Server.webserver_url)
 end
