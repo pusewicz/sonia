@@ -2,14 +2,13 @@ Twitter:
   :name: twitter
   :title: Our Tweets
   :nitems: 5
-  :username: ssuperawesom
-  :password: tooobvious
-  :follow: pusewicz,barrym,wjlroe,svicente,DavidMcNicholl,marcusmitchell,lucaspiller,toonzend,twittlefish
+  :username: username
+  :password: password
+  :follow: auser
 
 Tfl:
   :name: tfl
   :title: TfL Status
-  :url: "http://api.tubeupdates.com/?method=get.status&lines=all&format=json"
 
 Campfire:
   :nitems: 5
