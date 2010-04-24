@@ -6,6 +6,9 @@
     %link(media="screen" rel="stylesheet" type="text/css" href="/blueprint/reset.css")
     %link(media="screen" rel="stylesheet" type="text/css" href="/blueprint/grid.css")
     %link(media="screen" rel="stylesheet" type="text/css" href="/stylesheets/sonia.css")
+    %script(type="text/javascript" src="/javascripts/swfobject.js")
+    %script(type="text/javascript" src="/javascripts/FABridge.js")
+    %script(type="text/javascript" src="/javascripts/web_socket.js")
     %script(type="text/javascript" src="/javascripts/prototype.js")
     %script(type="text/javascript" src="/javascripts/scriptaculous.js")
     %script(type="text/javascript" src="/javascripts/sonia.js")
@@ -16,6 +19,7 @@
     %script(type="text/javascript" src="/javascripts/widgets/icinga.js")
     %script(type="text/javascript" src="/javascripts/widgets/campfire.js")
     :javascript
+      WebSocket.__swfLocation = "WebSocketMain.swf";
       $(document).observe("dom:loaded", function() {
         if ("WebSocket" in window) {
           console.log("WebSocket supported.");
