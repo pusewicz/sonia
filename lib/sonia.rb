@@ -6,6 +6,7 @@ module Sonia
   autoload :Server, 'sonia/server'
   autoload :Widget, 'sonia/widget'
   autoload :Widgets, 'sonia/widgets'
+  autoload :WebServer, 'sonia/web_server'
 
   def self.log
     @logger ||= Logger.new(STDOUT)
