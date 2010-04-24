@@ -15,7 +15,7 @@ module Sonia
       end
 
       def initial_push
-        log.info(widget_name) { "Polling `#{friends_timeline_url}'" }
+        log_info "Polling `#{friends_timeline_url}'"
         http = EventMachine::HttpRequest.new(friends_timeline_url).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {
@@ -36,11 +36,11 @@ module Sonia
           push format_status(parse_json(status))
         end
       ensure
-        log.info(widget_name) { "Connected to stream #{@stream.inspect}" }
+        log_info "Connected to stream #{@stream.inspect}"
       end
 
       def manage_friends
-        log.info(widget_name) { "Polling `#{friends_url}'" }
+        log_info "Polling `#{friends_url}'"
         http = EventMachine::HttpRequest.new(friends_url).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {
@@ -82,10 +82,10 @@ module Sonia
 
       def follow_new_users(users)
         if users.any?
-          log.info(widget_name) { "Creating new friendships with #{users.join(", ")}" }
+          log_info "Creating new friendships with #{users.join(", ")}"
           users.each do |user|
             url = create_friendship_url(user)
-            log.info(widget_name) { "Polling `#{url}'" }
+            log_info "Polling `#{url}'"
             http = EventMachine::HttpRequest.new(url).post(headers)
             http.errback { log_fatal_error(http) }
             http.callback {
@@ -93,13 +93,13 @@ module Sonia
             }
           end
         else
-          log.info(widget_name) { "No new friendships to create, already following #{follow_usernames.join(', ')}" }
+          log_info"No new friendships to create, already following #{follow_usernames.join(', ')}"
         end
       end
 
       def handle_follow_new_users_response(http)
         if http.response_header.status == 200
-          log.info(widget_name) { "Created friendship with #{user}" }
+          log_info "Created friendship with #{user}"
         else
           log_unsuccessful_response_body(http.response)
         end
@@ -135,7 +135,7 @@ module Sonia
 
       def lookup_user_ids_for(usernames, &block)
         url = user_lookup_url(follow_usernames)
-        log.info(widget_name) { "Polling `#{url}'" }
+        log_info "Polling `#{url}'"
         http = EventMachine::HttpRequest.new(url).get(headers)
         http.errback { log_fatal_error(http) }
         http.callback {
