@@ -1,8 +1,0 @@
---- 
-lib/octopi: 
-  squashed: true
-  url: git://github.com/fcoury/octopi.git
-  type: git
-  revision: 77b532e65c69ea2aa618e398042ad156884e4ca7
-  branch: master
-  remote: braid/lib/octopi
