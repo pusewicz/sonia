@@ -160,3 +160,9 @@ div.widget p#northern         { background-color: #000; color: white; }
 div.widget p#piccadilly       { background-color: #039; color: white; }
 div.widget p#victoria         { background-color: #39C; }
 div.widget p#waterloocity     { background-color: #6CC; }
+
+
+/* Github */
+
+div.github .commit_message,
+div.github .commit_repository { font-weight: bold }
