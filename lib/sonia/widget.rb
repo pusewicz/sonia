@@ -1,4 +1,5 @@
 require "yajl"
+require "yaml"
 require "digest/sha1"
 
 module Sonia
@@ -22,6 +23,10 @@ module Sonia
 
     def parse_json(payload)
       Yajl::Parser.parse(payload)
+    end
+
+    def parse_yaml(payload)
+      YAML.load(payload)
     end
 
     # Used to push initial data after setup

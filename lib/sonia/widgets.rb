@@ -4,9 +4,10 @@ module Sonia
       #widget = File.basename(file, ".rb")
       #symbol = ""
     #end
-    autoload :Twitter, "sonia/widgets/twitter"
-    autoload :Tfl,     "sonia/widgets/tfl"
-    autoload :Icinga,  "sonia/widgets/icinga"
+    autoload :Twitter,  "sonia/widgets/twitter"
+    autoload :Tfl,      "sonia/widgets/tfl"
+    autoload :Icinga,   "sonia/widgets/icinga"
     autoload :Campfire, "sonia/widgets/campfire"
+    autoload :Github,   "sonia/widgets/github"
   end
 end

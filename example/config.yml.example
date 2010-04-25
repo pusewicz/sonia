@@ -24,3 +24,10 @@ Icinga:
   :password: icingaadmin
   :title: Icinga Status
   :url: "http://localhost/icinga/cgi-bin/tac.cgi"
+
+Github:
+  :title: Github Commits
+  :name: github
+  :username: your_username
+  :token: your_token
+  :nitems: 10
