@@ -5,7 +5,7 @@ Sonia is a Superawesome Dashboard
 == Requirements
 
 * Ruby 1.8.7
-* Bundler gem `gem install bundler`
+* Bundler gem +gem install bundler+
 
 == Running
 
