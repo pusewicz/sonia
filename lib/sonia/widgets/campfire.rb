@@ -51,7 +51,8 @@ module Sonia
       def handle_initial_response(http)
         if http.response_header.status == 200
           messages = parse_json(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
-          messages.each do |message|
+          message_from = messages.size >= config[:nitems] ? messages.size - config[:nitems] : 0
+          messages[message_from..-1].each do |message|
             formatted = format_message(message)
             push formatted unless formatted.nil?
           end
