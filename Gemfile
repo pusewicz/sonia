@@ -26,5 +26,5 @@ group :development do
   gem "jeweler"
   gem "gemcutter"
   gem "rake"
-  gem "ruby-debug"
+  gem "ruby-debug19"
 end
