@@ -7,10 +7,11 @@ module Sonia
 
     desc "start", "Start Sonia server"
     method_option :config, :type => :string, :aliases => "-c", :required => true
+    method_option :'no-auto', :type => :boolean
     def start
       require "sonia"
       Sonia::Server.run!(Config.new(options)) do
-        Launchy::Browser.run(Sonia::Server.webserver_url)
+        Launchy::Browser.run(Sonia::Server.webserver_url) unless options[:'no-auto']
       end
     end
 
