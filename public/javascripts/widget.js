@@ -20,6 +20,7 @@ var Widget = Class.create({
   buildContainer: function(config) {
     this.container = new Element("div", {id: this.widget_id, 'class': "widget " + config.name});
     this.parent.appendChild(this.container);
+    new Draggable(this.container);
   },
 
   savePosition: function() {

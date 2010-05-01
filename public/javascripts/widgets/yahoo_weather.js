@@ -8,7 +8,6 @@ var YahooWeather = Class.create(Widget, {
     this.update();
   },
   update: function() {
-    new Draggable($(this.container));
     this.container.childElements().invoke('remove');
     if(this.weather.condition) {
       this.container.appendChild(this.buildWidgetIcon());
