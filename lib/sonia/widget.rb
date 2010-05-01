@@ -1,9 +1,20 @@
 require "yajl"
 require "yaml"
+require "nokogiri"
 require "digest/sha1"
 
 module Sonia
   class Widget
+    class << self
+      def inherited(subclass)
+        (@widgets ||= []) << subclass unless widgets.include?(subclass)
+      end
+
+      def widgets
+        @widgets ||= []
+      end
+    end
+
     attr_reader :widget_id, :channel, :sid, :config, :log
 
     def initialize(config)
@@ -27,6 +38,10 @@ module Sonia
 
     def parse_yaml(payload)
       YAML.load(payload)
+    end
+
+    def parse_xml(payload)
+      Nokogiri(payload)
     end
 
     # Used to push initial data after setup
