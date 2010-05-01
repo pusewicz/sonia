@@ -10,10 +10,10 @@ module Sonia
   module Server
     extend self
 
-    WEBSOCKET_HOST = "0.0.0.0"
+    WEBSOCKET_HOST = "localhost"
     WEBSOCKET_PORT = 8080
 
-    WEBSERVER_HOST = "0.0.0.0"
+    WEBSERVER_HOST = "localhost"
     WEBSERVER_PORT = 3000
 
     def run!(options, &block)
