@@ -14,20 +14,8 @@
     %script(type="text/javascript" src="/javascripts/sonia.js")
     %script(type="text/javascript" src="/javascripts/dispatcher.js")
     %script(type="text/javascript" src="/javascripts/widget.js")
-    %script(type="text/javascript" src="/javascripts/widgets/twitter.js")
-    %script(type="text/javascript" src="/javascripts/widgets/github.js")
-    %script(type="text/javascript" src="/javascripts/widgets/tfl.js")
-    %script(type="text/javascript" src="/javascripts/widgets/icinga.js")
-    %script(type="text/javascript" src="/javascripts/widgets/campfire.js")
-    :javascript
-      WebSocket.__swfLocation = "WebSocketMain.swf";
-      $(document).observe("dom:loaded", function() {
-        if ("WebSocket" in window) {
-          console.log("WebSocket supported.");
-          var sonia = new Sonia("ws://localhost:8080");
-          } else {
-          console.log("WebSocket not supported.");
-        }
-      });
+    - widget_javascripts.each do |js|
+      %script(type="text/javascript" src=js)
+    %script(type="text/javascript" src="/javascripts/init.js")
   %body#widgets
     %h1 project sonia
