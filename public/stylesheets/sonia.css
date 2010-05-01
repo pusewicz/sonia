@@ -1,3 +1,7 @@
+body * {
+  cursor: default;
+}
+
 body {
   background: black; /* fallback for older/unsupporting browsers */
   background-image: -webkit-gradient(linear,
@@ -41,6 +45,10 @@ div.widget p hr {
 div.widget h2 {
   font-size: 24px;
   font-weight: bold;
+}
+
+div.widget .handle {
+  cursor: move;
 }
 
 div.widget .author {

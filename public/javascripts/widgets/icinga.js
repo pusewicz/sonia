@@ -14,6 +14,7 @@ var Icinga = Class.create(Widget, {
     this.container.childElements().invoke('remove');
     this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
+    new Draggable(this.container, { handle: this.container.down(".handle") });
     this.messages.each(function(message) {
       var cont = new Element('p', { id: message.id});
 
@@ -33,6 +34,6 @@ var Icinga = Class.create(Widget, {
     return(new Element("img", {src: "images/icinga.png", width: 32, height: 32, className: 'icinga icon'}));
   },
   buildHeader: function() {
-    return(new Element("h2").update(this.title));
+    return(new Element("h2", { 'class': 'handle' }).update(this.title));
   }
 });

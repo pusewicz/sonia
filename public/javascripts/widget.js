@@ -20,11 +20,10 @@ var Widget = Class.create({
   buildContainer: function(config) {
     this.container = new Element("div", {id: this.widget_id, 'class': "widget " + config.name});
     this.parent.appendChild(this.container);
-    new Draggable(this.container);
   },
 
   savePosition: function() {
-    var position = { left: this.container.getStyle("left") || 0, top: this.container.getStyle("top") || 0 };
+    var position = { left: this.container.measure("left"), top: this.container.measure("top") };
     Storage.set(this.attrKey("position"), position);
   },
 
