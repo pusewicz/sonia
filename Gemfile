@@ -1,6 +1,7 @@
 source :gemcutter
 
 group :runtime do
+  gem "activesupport", "3.0.0.beta3"
   gem "twitter-stream", "0.1.4"
   gem "eventmachine", "0.12.10"
   gem "em-websocket", "0.0.6"
