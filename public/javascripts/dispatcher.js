@@ -8,7 +8,7 @@ var Dispatcher = Class.create({
     if(json.message) {
       if(json.message.widget && json.message.widget_id && json.message.payload) {
         try {
-          this.sonia.widgets[json.message.widget_id].receive(json.message.payload);
+          this.sonia.widgets[json.message.widget_id].onReceive(json.message.payload);
         } catch(err) {
           console.error("Could not deliver message", json.message);
         }

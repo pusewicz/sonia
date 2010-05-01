@@ -5,16 +5,25 @@ var Widget = Class.create({
     this.title     = config.title;
     this.config    = config;
     this.buildContainer(config);
-    this.update();
+    this.build();
     this.restorePosition();
   },
 
-  receive: function(message) {
+  onReceive: function(payload) {
+    this.handlePayload(payload);
+    this.update();
+  },
+
+  handlePayload: function(message) {
     console.log(this.title, "received message:", message);
   },
 
   update: function() {
-    console.log(this.title, "should redraw");
+    console.warn(this.title, "should redraw");
+  },
+
+  build: function() {
+    console.warn(this.title, "should build it's initial structure");
   },
 
   buildContainer: function(config) {
@@ -32,7 +41,7 @@ var Widget = Class.create({
       var position = Storage.get(this.attrKey("position"));
       this.container.setStyle({ left: parseInt(position.left) + "px", top: parseInt(position.top) + "px"});
     } catch(err) {
-      console.error("Cound not set restore position", err);
+      console.warn("Cound not set restore position", err);
     }
   },
 

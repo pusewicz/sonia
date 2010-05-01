@@ -14,7 +14,7 @@ var Tfl = Class.create(Widget, {
     this.container.childElements().invoke('remove');
     this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
-    new Draggable(this.container, { handle: this.container.down(".handle") });
+    new Draggable(this.container, { handle: this.container.down(".handle"), constrainToViewport: true, resizable: true, draggable: true });
     this.messages.each(function(message) {
       var cont = new Element('p', { id: message.id});
 

@@ -16,5 +16,19 @@ module Sonia
     get "/" do
       haml :index
     end
+
+    get "/javascripts/:widget/*.js" do
+      content_type 'application/javascript', :charset => 'utf-8'
+      send_file File.join(Sonia.root, "widgets", params[:widget], params[:splat].first + ".js")
+    end
+
+    get "/stylesheets/:widget/*.css" do
+      content_type 'text/css', :charset => 'utf-8'
+      send_file File.join(Sonia.root, "widgets", params[:widget], params[:splat].first + ".css")
+    end
+
+    get "/images/:widget/*.*" do
+      send_file File.join(Sonia.root, "widgets", params[:widget], "images", params[:splat].join('.'))
+    end
   end
 end
