@@ -14,6 +14,7 @@ var Campfire = Class.create(Widget, {
     this.container.childElements().invoke('remove');
     this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
+    new Draggable(this.container, { handle: this.container.down(".handle") });
     this.messages.reverse(false).each(function(message) {
       var cont = new Element('p');
       cont.appendChild(new Element('img', { src: message.avatar, width: 48, height: 48 }));
@@ -25,7 +26,7 @@ var Campfire = Class.create(Widget, {
   },
 
   buildHeader: function() {
-    return(new Element("h2").update(this.title));
+    return(new Element("h2", { 'class': 'handle' }).update(this.title));
   },
 
   buildWidgetIcon: function() {
