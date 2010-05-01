@@ -10,19 +10,22 @@ var Twitter = Class.create(Widget, {
     this.messages.push(payload);
     this.update();
   },
+  build: function() {
+    this.container.insert(this.buildWidgetIcon());
+    this.header_container = this.buildHeader();
+    this.container.insert(this.header_container);
+    this.messages_container = this.buildMessages();
+    this.container.insert(this.messages_container);
+  },
   update: function() {
-    this.container.childElements().invoke('remove');
-    this.container.appendChild(this.buildWidgetIcon());
-    this.container.appendChild(this.buildHeader());
-    new Draggable(this.container, { handle: this.container.down(".handle") });
+    this.messages_container.childElements().invoke('remove');
     this.messages.reverse(false).each(function(message) {
       var cont = new Element('p');
-      cont.appendChild(new Element('img', { src: message.profile_image_url }));
-      cont.appendChild(new Element('div', { 'class': 'author' }).update(message.user));
-      cont.appendChild(document.createTextNode(message.text.replace(/http.*\w/ig,"")));
-      cont.appendChild(new Element('hr' ))
-      this.container.appendChild(cont);
-      // new Effect.Pulsate(this.container, { pulses: 2, duration: 1 });
+      cont.insert(new Element('img', { src: message.profile_image_url }));
+      cont.insert(new Element('div', { 'class': 'author' }).update(message.user));
+      cont.insert(document.createTextNode(message.text.replace(/http.*\w/ig,"")));
+      cont.insert(new Element('hr' ))
+      this.messages_container.insert(cont);
     }.bind(this));
   },
 
@@ -32,5 +35,9 @@ var Twitter = Class.create(Widget, {
 
   buildWidgetIcon: function() {
     return(new Element("img", { src: "images/twitter.png", width: 32, height: 32, className: 'twitter icon'}));
+  },
+
+  buildMessages: function() {
+    return(new Element("div", { 'class': 'messages' }));
   }
 });
