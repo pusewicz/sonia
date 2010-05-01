@@ -9,7 +9,7 @@ module Sonia
     def initialize(config)
       @log       = Sonia.log
       @channel   = EM::Channel.new
-      @config    = config || {}
+      @config    = config || Config.new({})
       @widget_id = Digest::SHA1.hexdigest([@channel, @config, Time.now.usec, self.class].join)
     end
 
@@ -66,7 +66,7 @@ module Sonia
       {
         :widget    => self.widget_name,
         :widget_id => self.widget_id,
-        :config    => self.config
+        :config    => self.config.to_hash
       }
     end
 

@@ -7,6 +7,7 @@ module Sonia
   autoload :Widget, 'sonia/widget'
   autoload :Widgets, 'sonia/widgets'
   autoload :WebServer, 'sonia/web_server'
+  autoload :Config, 'sonia/config'
 
   def self.log
     @logger ||= Logger.new(STDOUT)

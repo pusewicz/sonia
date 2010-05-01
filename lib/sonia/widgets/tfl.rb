@@ -1,5 +1,3 @@
-require 'em-http'
-
 module Sonia
   module Widgets
     class Tfl < Sonia::Widget
