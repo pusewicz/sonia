@@ -11,7 +11,6 @@ var Icinga = Class.create(Widget, {
     this.update();
   },
   update: function() {
-    new Draggable($(this.container));
     this.container.childElements().invoke('remove');
     this.container.appendChild(this.buildWidgetIcon());
     this.container.appendChild(this.buildHeader());
