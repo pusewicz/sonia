@@ -21,7 +21,11 @@ module Sonia
       @log       = Sonia.log
       @channel   = EM::Channel.new
       @config    = config || Config.new({})
-      @widget_id = Digest::SHA1.hexdigest([@config.to_hash.keys.sort.join, @config.to_hash.values.sort.join, self.class].join)
+      @widget_id = Digest::SHA1.hexdigest([
+        @config.to_hash.keys.map { |s| s.to_s }.sort.join,
+        @config.to_hash.values.map { |s| s.to_s }.sort.join,
+        self.class
+      ].join)
     end
 
     def encoder
