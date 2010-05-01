@@ -1,6 +1,5 @@
 require 'twitter/json_stream'
 require 'uri'
-require 'em-http'
 require 'digest/md5'
 
 module Sonia
@@ -14,7 +13,7 @@ module Sonia
       def initialize(config)
         super(config)
         @users    = {}
-        @room_uri = URI.encode("#{config[:url]}/room/#{config[:room_id]}.json")
+        @room_uri = URI.encode("#{config.url}/room/#{config.room_id}.json")
 
         user_info
         connect_to_stream
@@ -34,9 +33,9 @@ module Sonia
       private
       def connect_to_stream
         @stream = ::Twitter::JSONStream.connect(
-          :path => "/room/#{config[:room_id]}/live.json",
+          :path => "/room/#{config.room_id}/live.json",
           :host => 'streaming.campfirenow.com',
-          :auth => "#{config[:token]}:x"
+          :auth => "#{config.token}:x"
           )
 
         @stream.each_item do |message|
@@ -51,7 +50,7 @@ module Sonia
       def handle_initial_response(http)
         if http.response_header.status == 200
           messages = parse_json(http.response)["messages"].select { |message| message["type"] == "TextMessage" }
-          message_from = messages.size >= config[:nitems] ? messages.size - config[:nitems] : 0
+          message_from = messages.size >= config.nitems ? messages.size - config.nitems : 0
           messages[message_from..-1].each do |message|
             formatted = format_message(message)
             push formatted unless formatted.nil?
@@ -107,11 +106,11 @@ module Sonia
       end
 
       def transcript_url
-        TRANSCRIPT_URL % [config[:url], config[:room_id]]
+        TRANSCRIPT_URL % [config.url, config.room_id]
       end
 
       def headers
-        { :head => { 'Authorization' => [config[:token], "x"] } }
+        { :head => { 'Authorization' => [config.token, "x"] } }
       end
     end
   end

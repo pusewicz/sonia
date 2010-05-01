@@ -107,7 +107,7 @@ module Sonia
           rescue => e
             log_backtrace(e)
           end
-        end.flatten.compact.sort_by { |e| Time.parse(e["date"]) }.reverse[0..config[:nitems]]
+        end.flatten.compact.sort_by { |e| Time.parse(e["date"]) }.reverse[0..config.nitems]
 
         push commits
       rescue => e
@@ -115,23 +115,23 @@ module Sonia
       end
 
       def auth_data
-        { :query => { "login" => config[:username], "token" => config[:token] }}
+        { :query => { "login" => config.username, "token" => config.token }}
       end
 
       def repositories_url
-        REPOSITIORIES_URL % config[:username]
+        REPOSITIORIES_URL % config.username
       end
 
       def network_meta_url(repo)
         repository = repo(repo)
         is_private = repository[:private] ? 'https' : 'http'
-        NETWORK_META_URL % [is_private, config[:username], repo]
+        NETWORK_META_URL % [is_private, config.username, repo]
       end
 
       def network_data_chunk_url(repo, nethash)
         repository = repo(repo)
         is_private = repository[:private] ? 'https' : 'http'
-        NETWORK_DATA_CHUNK_URL % [is_private, config[:username], repo, nethash]
+        NETWORK_DATA_CHUNK_URL % [is_private, config.username, repo, nethash]
       end
 
       def repo(repo)

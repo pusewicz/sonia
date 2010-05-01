@@ -1,10 +1,9 @@
 require "eventmachine"
 require "em-websocket"
+require 'em-http'
 require "yajl"
-require "configliere"
+require "yaml"
 require "thin"
-
-Settings.use :commandline, :config_file
 
 module Sonia
   module Server
@@ -16,9 +15,9 @@ module Sonia
     WEBSERVER_HOST = "localhost"
     WEBSERVER_PORT = 3000
 
-    def run!(options, &block)
+    def run!(args, &block)
       @start_block = block
-      configure(options)
+      configure(args)
       serve
     end
 
@@ -27,9 +26,7 @@ module Sonia
     end
 
     def configure(options)
-      @@config = Settings.read(File.expand_path(options.config))
-      Settings.resolve!
-      @@config
+      @@config = Config.new(YAML.load_file(File.expand_path(options.config)))
     end
 
     def log
@@ -38,7 +35,6 @@ module Sonia
 
     def serve
       EventMachine.run {
-
         initialize_widgets
         start_web_socket_server
         start_web_server

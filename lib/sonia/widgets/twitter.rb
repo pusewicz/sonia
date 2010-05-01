@@ -1,4 +1,3 @@
-require 'em-http'
 require 'twitter/json_stream'
 
 module Sonia
@@ -29,7 +28,7 @@ module Sonia
           :path    => "/1/statuses/filter.json",
           :content => "follow=#{@user_ids.join(',')}",
           :method  => "POST",
-          :auth    => [config[:username], config[:password]].join(':')
+          :auth    => [config.username, config.password].join(':')
         )
 
         @stream.each_item do |status|
@@ -106,7 +105,7 @@ module Sonia
       end
 
       def follow_usernames
-        config[:follow].split(',')
+        config.follow.split(',')
       end
 
       def extract_friends(response)
@@ -114,7 +113,7 @@ module Sonia
       end
 
       def headers
-        { :head => { 'Authorization' => [config[:username], config[:password]] } }
+        { :head => { 'Authorization' => [config.username, config.password] } }
       end
 
       def create_friendship_url(user)
@@ -122,11 +121,11 @@ module Sonia
       end
 
       def friends_timeline_url
-        FRIENDS_TIMELINE_URL % config[:nitems]
+        FRIENDS_TIMELINE_URL % config.nitems
       end
 
       def friends_url
-        FRIENDS_URL % config[:username]
+        FRIENDS_URL % config.username
       end
 
       def user_lookup_url(users)

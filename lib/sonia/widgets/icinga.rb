@@ -1,5 +1,4 @@
 require 'nokogiri'
-require 'em-http'
 
 module Sonia
   module Widgets
@@ -24,7 +23,7 @@ module Sonia
       private
 
       def headers
-        { :head => { 'Authorization' => [config[:username], config[:password]] } }
+        { :head => { 'Authorization' => [config.username, config.password] } }
       end
 
       def fetch_data
@@ -50,7 +49,7 @@ module Sonia
       end
 
       def service_url
-        config[:url]
+        config.url
       end
     end # class
   end # module
