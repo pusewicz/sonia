@@ -12,10 +12,6 @@ end
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-require "sonia"
-require "sonia/options"
-require "launchy"
+require "sonia/cli"
 
-Sonia::Server.run!(ARGV.flags) do
-  Launchy::Browser.run(Sonia::Server.webserver_url)
-end
+Sonia::CLI.start

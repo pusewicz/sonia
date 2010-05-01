@@ -7,7 +7,7 @@ group :runtime do
   gem "em-http-request", "0.2.7"
   gem "yajl-ruby", "0.7.5"
   gem "rake", "0.8.7"
-  gem "optiflag", "0.7"
+  gem "thor", "0.13.6"
   gem "nokogiri", "1.4.1"
   gem "launchy", "0.3.5"
   gem "thin", "1.2.7"
