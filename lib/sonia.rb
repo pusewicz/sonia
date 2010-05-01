@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 
 require 'logger'
+require 'active_support'
 
 module Sonia
   autoload :Server,    'sonia/server'
