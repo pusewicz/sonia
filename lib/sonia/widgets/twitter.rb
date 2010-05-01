@@ -89,7 +89,7 @@ module Sonia
             http = EventMachine::HttpRequest.new(url).post(headers)
             http.errback { log_fatal_error(http) }
             http.callback {
-              handle_follow_new_users_response(http)
+              handle_follow_new_users_response(http, user)
             }
           end
         else
@@ -97,7 +97,7 @@ module Sonia
         end
       end
 
-      def handle_follow_new_users_response(http)
+      def handle_follow_new_users_response(http, user)
         if http.response_header.status == 200
           log_info "Created friendship with #{user}"
         else
