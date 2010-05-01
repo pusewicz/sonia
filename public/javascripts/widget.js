@@ -24,20 +24,20 @@ var Widget = Class.create({
   },
 
   savePosition: function() {
-    var position = { left: this.container.getStyle('left'), top: this.container.getStyle('top') };
-    Cookie.set(this.cookieKey("position"), JSON.stringify(position));
+    var position = { left: this.container.getStyle("left") || 0, top: this.container.getStyle("top") || 0 };
+    Storage.set(this.attrKey("position"), position);
   },
 
   restorePosition: function() {
     try {
-      var position = JSON.parse(Cookie.get(this.cookieKey("position")));
-      this.container.setStyle(position);
+      var position = Storage.get(this.attrKey("position"));
+      this.container.setStyle({ left: parseInt(position.left) + "px", top: parseInt(position.top) + "px"});
     } catch(err) {
       console.error("Cound not set restore position", err);
     }
   },
 
-  cookieKey: function(attr) {
+  attrKey: function(attr) {
     return(this.widget_id + "_" + attr);
   }
 });
