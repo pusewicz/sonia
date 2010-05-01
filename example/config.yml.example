@@ -1,33 +1,39 @@
 Twitter:
-  :name: twitter
-  :title: Our Tweets
-  :nitems: 5
-  :username: username
-  :password: password
-  :follow: auser
+  name: twitter
+  title: Our Tweets
+  nitems: 5
+  username: username
+  password: password
+  follow: auser
 
 Tfl:
-  :name: tfl
-  :title: TfL Status
+  name: tfl
+  title: TfL Status
 
 Campfire:
-  :nitems: 5
-  :name: campfire
-  :title: Campfire
-  :room_id: 1
-  :url: "https://sample.campfirenow.com"
-  :token: your_api_key
+  nitems: 5
+  name: campfire
+  title: Campfire
+  room_id: 1
+  url: "https://sample.campfirenow.com"
+  token: your_api_key
 
 Icinga:
-  :name: icinga
-  :username: icingaadmin
-  :password: icingaadmin
-  :title: Icinga Status
-  :url: "http://localhost/icinga/cgi-bin/tac.cgi"
+  name: icinga
+  username: icingaadmin
+  password: icingaadmin
+  title: Icinga Status
+  url: "http://localhost/icinga/cgi-bin/tac.cgi"
 
 Github:
-  :title: Github Commits
-  :name: github
-  :username: your_username
-  :token: your_token
-  :nitems: 10
+  title: Github Commits
+  name: github
+  username: your_username
+  token: your_token
+  nitems: 10
+
+YahooWeather:
+  title: Weather for Paris
+  name: yahoo_weather
+  woeid: 615702
+  units: celsius
