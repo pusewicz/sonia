@@ -30,7 +30,7 @@ Github:
   name: github
   username: your_username
   token: your_token
-  nitems: 10
+  nitems: 5
 
 YahooWeather:
   title: Weather for Paris

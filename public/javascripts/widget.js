@@ -15,15 +15,15 @@ var Widget = Class.create({
   },
 
   handlePayload: function(message) {
-    console.log(this.title, "received message:", message);
+    console.warn(this.title, "should implement handlePayload(payload)");
   },
 
   update: function() {
-    console.warn(this.title, "should redraw");
+    console.warn(this.title, "should implement update()");
   },
 
   build: function() {
-    console.warn(this.title, "should build it's initial structure");
+    console.warn(this.title, "should implement build()");
   },
 
   buildContainer: function(config) {

@@ -1,0 +1,38 @@
+/* TfL Lines*/
+
+div.tfl p {
+  position: relative;
+  width: 100%;
+}
+div.tfl p span {
+  width: 50%;
+  text-align: center;
+  margin: 0;
+  float: right;
+  line-height: 32px;
+}
+div.tfl p span.station {
+  float: left;
+}
+
+div.tfl p span.status         { text-transform: uppercase; }
+div.tfl p span.good_service   { background-color: green; color: white }
+div.tfl p span.part_suspended { background-color: #963; color: white }
+div.tfl p span.part_closure,
+div.tfl p span.planned_closure{ background-color: #F7A414; color: white }
+div.tfl p span.suspended      { background-color: black; color: white }
+div.tfl p span.severe_delays  { background-color: red; color: white; font-weight: bold }
+div.tfl p span.minor_delays   { background-color: yellow; color: black }
+div.tfl p span.unknown        { background-color: black; color: white }
+div.tfl p#bakerloo         { background-color: #963; color: white }
+div.tfl p#central          { background-color: #C03; color: white}
+div.tfl p#circle           { background-color: #FC0 }
+div.tfl p#district         { background-color: #063; color: white}
+div.tfl p#docklands        { background-color: #099; }
+div.tfl p#hammersmithcity  { background-color: #F9C; }
+div.tfl p#jubilee          { background-color: #666; color: white }
+div.tfl p#metropolitan     { background-color: #903; color: white }
+div.tfl p#northern         { background-color: #000; color: white; }
+div.tfl p#piccadilly       { background-color: #039; color: white; }
+div.tfl p#victoria         { background-color: #39C; }
+div.tfl p#waterloocity     { background-color: #6CC; }
