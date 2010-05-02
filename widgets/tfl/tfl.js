@@ -37,7 +37,7 @@ var Tfl = Class.create(Widget, {
   },
 
   buildWidgetIcon: function() {
-    return(new Element("img", {src: "images/tfl.png",  'class': 'tfl icon'}));
+    return(new Element("img", {src: "images/tfl/icon.png",  'class': 'tfl icon'}));
   },
 
   buildHeader: function() {
