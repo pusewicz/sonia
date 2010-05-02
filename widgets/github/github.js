@@ -45,7 +45,7 @@ var Github = Class.create(Widget, {
   },
 
   buildIcon: function() {
-    return(new Element("img", { src: "images/github.png", 'class': 'github icon' }));
+    return(new Element("img", { src: "images/github/icon.png", 'class': 'github icon' }));
   }
 });
 
