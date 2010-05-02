@@ -1,0 +1,13 @@
+/* Github */
+
+div.github { width: 468px; }
+div.github .commit_message,
+div.github .commit_repository { font-weight: bold }
+div.github .content img {
+  width: 32px;
+  height: 32px;
+}
+
+div.github .content p {
+  line-height: 24px;
+}
