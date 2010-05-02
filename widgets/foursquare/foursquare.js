@@ -35,7 +35,7 @@ var Foursquare = Class.create(Widget, {
     }.bind(this));
   },
   buildWidgetIcon: function() {
-    return(new Element("img", {src: "images/foursquare.png", width: 32, height: 32, className: 'foursquare icon'}));
+    return(new Element("img", {src: "images/foursquare/icon.png", width: 32, height: 32, className: 'foursquare icon'}));
   },
   buildHeader: function() {
     return(new Element("h2", { 'class': 'handle' }).update(this.title));
