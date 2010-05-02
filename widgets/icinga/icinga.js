@@ -40,7 +40,7 @@ var Icinga = Class.create(Widget, {
   },
 
   buildIcon: function() {
-    return(new Element("img", { src: "images/icinga.png", 'class': 'icinga icon' }));
+    return(new Element("img", { src: "images/icinga/icon.png", 'class': 'icinga icon' }));
   },
 
   buildHeader: function() {
