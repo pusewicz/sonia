@@ -107,7 +107,7 @@ module Sonia
           rescue => e
             log_backtrace(e)
           end
-        end.flatten.compact.sort_by { |e| Time.parse(e["date"]) }.reverse[0..config.nitems]
+        end.flatten.compact.sort_by { |e| Time.parse(e["date"]) }.reverse[0...config.nitems]
 
         push commits
       rescue => e
