@@ -28,13 +28,8 @@ var Icinga = Class.create(Widget, {
     this.messages.each(function(message) {
       var cont = new Element('p', { id: message.id});
 
-      var icinga_count = new Element('span', { 'class': 'count '  + message.status.replace(" ", "_").toLowerCase()});
-      icinga_count.insert(document.createTextNode(message.count));
-      cont.insert(icinga_count);
-
-      var icinga_status = new Element('span', { 'class': "status " + message.status.replace(" ", "_").toLowerCase()});
-      icinga_status.insert(document.createTextNode(message.status));
-      cont.insert(icinga_status);
+      cont.insert(new Element('span', { 'class': 'count ' + message.status.replace(" ", "_").toLowerCase()}).update(message.count));
+      cont.insert(new Element('span', { 'class': "status " + message.status.replace(" ", "_").toLowerCase()}).update(message.status));
 
       this.contentContainer.insert(cont);
     }.bind(this));
