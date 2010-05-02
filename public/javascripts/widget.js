@@ -39,7 +39,10 @@ var Widget = Class.create({
   restorePosition: function() {
     try {
       var position = Storage.get(this.attrKey("position"));
-      this.container.setStyle({ left: parseInt(position.left) + "px", top: parseInt(position.top) + "px"});
+      var left = parseInt(position.left);
+      var top  = parseInt(position.top);
+
+      this.container.setStyle({ left: (left < 0) ? 0 : left + "px", top: (top < 0) ? 0 : top + "px"});
     } catch(err) {
       console.warn("Cound not set restore position", err);
     }
