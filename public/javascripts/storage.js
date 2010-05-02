@@ -1,7 +1,7 @@
 var Storage = {
   storage: function() {
     if (typeof(localStorage) == 'undefined') {
-      console.warn('Local storage not supported by this browser');
+      console.warn('Local storage not supported by this browser, using CookieStore');
       var CookieStorage = {
         set: function(name, value) {
           return(Cookie.set(name, value));
@@ -15,6 +15,7 @@ var Storage = {
       }
       return(CookieStorage);
     } else {
+      console.log("localStorage supported.");
       var LocalStorage = {
         set: function(name, value) {
           return(localStorage.setItem(name, value));
