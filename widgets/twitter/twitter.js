@@ -40,7 +40,7 @@ var Twitter = Class.create(Widget, {
   },
 
   buildWidgetIcon: function() {
-    return(new Element("img", { src: "images/twitter.png", 'class': 'twitter icon'}));
+    return(new Element("img", { src: "images/twitter/icon.png", 'class': 'twitter icon'}));
   },
 
   buildMessages: function() {
