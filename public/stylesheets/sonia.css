@@ -81,54 +81,6 @@ div.widget img.icon {
   right: 0;
 }
 
-div.widget img.campfire_icon {
-/*  background-image: url('../images/campfire-32x32.png');*/
-}
-
-div.widget img.tfl_icon {
-/*  background-image: url('../images/tfl-32x32.png');*/
-}
-
-div.widget img.tfl {
-/*  background-image: url('../images/tfl-32x32.png');*/
-}
-
-div.widget img.icinga {
-/*  background-image: url('../images/icinga-32x32.png');*/
-}
-
-div.widget a {
-  display: block;
-}
-
-/* Icinga */
-div.icinga p {
-  position: relative;
-  width: 100%;
-}
-div.icinga p span {
-  width: 50%;
-  text-align: center;
-  margin: 0;
-  float: right;
-  line-height: 32px;
-}
-div.icinga p span.count {
-  float: left;
-  font-weight: bold;
-  -webkit-border-radius: 16px 0 0 16px;
-  -moz-border-radius: 16px 0 0 16px;
-}
-div.icinga p span.status    {
-  text-transform: uppercase;
-  font-weight: bold;
-  -webkit-border-radius: 0 16px 16px 0;
-  -moz-border-radius: 0 16px 16px 0;
-}
-
-div.icinga p span.critical  { background-color: red; color: white; font-weight: bold }
-div.icinga p span.ok        { background-color: green; color: white }
-div.icinga p span.warning   { background-color: #FC0 }
 
 /* TfL Lines*/
 div.tfl p {
@@ -167,25 +119,3 @@ div.widget p#northern         { background-color: #000; color: white; }
 div.widget p#piccadilly       { background-color: #039; color: white; }
 div.widget p#victoria         { background-color: #39C; }
 div.widget p#waterloocity     { background-color: #6CC; }
-
-
-/* Github */
-
-div.github .commit_message,
-div.github .commit_repository { font-weight: bold }
-
-
-/* Yahoo Weather */
-
-div.yahoo_weather .content .text { font-weight: bold }
-div.yahoo_weather .content .temperature {
-  text-align: right;
-  font-size: 32pt;
-  font-weight: bold;
-  margin-right: 0;
-  padding-right: 0;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
