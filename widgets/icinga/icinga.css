@@ -1,0 +1,29 @@
+/* Icinga */
+
+div.icinga p {
+  position: relative;
+  width: 100%;
+}
+div.icinga p span {
+  width: 50%;
+  text-align: center;
+  margin: 0;
+  float: right;
+  line-height: 32px;
+}
+div.icinga p span.count {
+  float: left;
+  font-weight: bold;
+  -webkit-border-radius: 16px 0 0 16px;
+  -moz-border-radius: 16px 0 0 16px;
+}
+div.icinga p span.status    {
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-border-radius: 0 16px 16px 0;
+  -moz-border-radius: 0 16px 16px 0;
+}
+
+div.icinga p span.critical  { background-color: red; color: white; font-weight: bold }
+div.icinga p span.ok        { background-color: green; color: white }
+div.icinga p span.warning   { background-color: #FC0 }
