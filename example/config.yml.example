@@ -10,6 +10,12 @@ Tfl:
   name: tfl
   title: TfL Status
 
+Foursquare:
+  name: foursquare
+  title: Where we are
+  username: username_email_or_mobile_number
+  password: password
+
 Campfire:
   nitems: 5
   name: campfire
