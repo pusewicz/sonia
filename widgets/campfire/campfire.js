@@ -42,7 +42,7 @@ var Campfire = Class.create(Widget, {
   },
 
   buildWidgetIcon: function() {
-    return(new Element("img", {src: "images/campfire.png", 'class': 'campfire icon'}));
+    return(new Element("img", {src: "images/campfire/icon.png", 'class': 'campfire icon'}));
   },
 
   buildContent: function() {
