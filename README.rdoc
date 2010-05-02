@@ -9,7 +9,7 @@ Sonia is a Superawesome Dashboard
 
 == Running
 
-    git clone git@github.com:pusewicz/sonia.git
+    git clone http://github.com/pusewicz/sonia.git
     cd sonia
     bundle install
     ./bin/sonia start --config example/config.yml
