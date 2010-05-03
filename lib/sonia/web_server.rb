@@ -2,6 +2,11 @@ require 'sinatra'
 require 'haml'
 
 module Sonia
+  # Sonia's Web Server
+  #
+  # Allows dynamically generating HTML pages
+  #
+  # @author Piotr Usewicz
   class WebServer < Sinatra::Base
     helpers Sonia::Helpers
 

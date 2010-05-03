@@ -18,6 +18,11 @@ module EventMachine
 end
 
 module Sonia
+  # Main Sonia event loop
+  #
+  # Starts both WebServer and WebSocket server
+  #
+  # @author Piotr Usewicz
   module Server
     extend self
 
@@ -27,24 +32,38 @@ module Sonia
     WEBSERVER_HOST = "localhost"
     WEBSERVER_PORT = 3000
 
+    # Starts the server
+    #
+    # @param [Hash] args Startup options
     def run!(args, &block)
       @start_block = block
       configure(args)
       serve
     end
 
+    # Returns configuration from the config file
+    #
+    # @return [Config]
     def config
       @@config
     end
 
+    # Loads the configuration file
+    #
+    # @param [Hash] options
+    # @return [Config]
     def configure(options)
       @@config = Config.new(YAML.load_file(File.expand_path(options.config)))
     end
 
+    # Returns [Logger] object
+    #
+    # @return [Logger]
     def log
       Sonia.log
     end
 
+    # Starts main [EventMachine] loop
     def serve
       EventMachine.run {
         initialize_widgets
@@ -54,6 +73,7 @@ module Sonia
       }
     end
 
+    # Goes through configured widgets and initializes them
     def initialize_widgets
       @widgets = []
 
@@ -64,11 +84,14 @@ module Sonia
       end
     end
 
+    # Returns websocket configuration options
+    #
+    # @return [Hash] Websocket's host and port number
     def websocket_options
       { :host => WEBSOCKET_HOST, :port => WEBSOCKET_PORT }
     end
 
-
+    # Starts WebSocket server
     def start_web_socket_server
       EventMachine::WebSocket.start(websocket_options) do |ws|
         ws.onopen {
@@ -101,10 +124,14 @@ module Sonia
       log.info("Server") { "WebSocket Server running at #{websocket_options[:host]}:#{websocket_options[:port]}" }
     end
 
+    # Starts Thin WebServer
     def start_web_server
       Thin::Server.start(WEBSERVER_HOST, WEBSERVER_PORT, ::Sonia::WebServer)
     end
 
+    # Returns WebServer URL
+    #
+    # @return [String] WebServer URL
     def webserver_url
       "http://#{WEBSERVER_HOST}:#{WEBSERVER_PORT}"
     end

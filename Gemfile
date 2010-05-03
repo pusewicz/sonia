@@ -21,8 +21,9 @@ end
   #gem "cucumber"
 #end
 
-#group :development do
+group :development do
+  gem "yard"
   #gem "ruby_core_source"
-  #gem "jeweler"
+  gem "jeweler"
   #gem "ruby-debug19"
-#end
+end
