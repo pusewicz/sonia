@@ -4,25 +4,26 @@
     %title Sonia - Awesome Office Dashboard
     %meta(charset="utf-8")
     %link(media="screen" rel="stylesheet" type="text/css" href="/blueprint/reset.css")
-    %link(media="screen" rel="stylesheet" type="text/css" href="/blueprint/grid.css")
     %link(media="screen" rel="stylesheet" type="text/css" href="/stylesheets/sonia.css")
     - widget_stylesheets.each do |css|
       %link(media="screen" rel="stylesheet" type="text/css" href=css)
-    %script(type="text/javascript" src="/javascripts/swfobject.js")
-    %script(type="text/javascript" src="/javascripts/FABridge.js")
+    %script(type="text/javascript" src="/vendor/swfobject.js")
+    %script(type="text/javascript" src="/vendor/FABridge.js")
     %script(type="text/javascript" src="/javascripts/web_socket.js")
-    %script(type="text/javascript" src="/javascripts/prototype.js")
-    %script(type="text/javascript" src="/javascripts/scriptaculous.js")
-    %script(type="text/javascript" src="/javascripts/livepipe.js")
-    %script(type="text/javascript" src="/javascripts/window.js")
-    %script(type="text/javascript" src="/javascripts/resizable.js")
-    %script(type="text/javascript" src="/javascripts/cookie.js")
+    %script(type="text/javascript" src="/vendor/prototype.js")
+    %script(type="text/javascript" src="/vendor/scriptaculous.js")
+    %script(type="text/javascript" src="/vendor/livepipe.js")
+    %script(type="text/javascript" src="/vendor/window.js")
+    %script(type="text/javascript" src="/vendor/resizable.js")
+    %script(type="text/javascript" src="/vendor/cookie.js")
     %script(type="text/javascript" src="/javascripts/storage.js")
     %script(type="text/javascript" src="/javascripts/sonia.js")
     %script(type="text/javascript" src="/javascripts/dispatcher.js")
     %script(type="text/javascript" src="/javascripts/widget.js")
+    %script(type="text/javascript" src="/javascripts/pager.js")
     - widget_javascripts.each do |js|
       %script(type="text/javascript" src=js)
     %script(type="text/javascript" src="/javascripts/init.js")
-  %body#widgets
+  %body
     %h1 project sonia
+    #widgets
