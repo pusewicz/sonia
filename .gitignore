@@ -5,3 +5,5 @@ tmp/**/*
 .DS_Store
 *~
 example/config.yml
+.yardoc/
+doc/
