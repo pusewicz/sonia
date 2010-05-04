@@ -27,6 +27,10 @@ var Sonia = Class.create({
     console.log("Received error:", event);
   },
 
+  getWidgets: function() {
+    return(this.widgets);
+  },
+
   addWidgets: function(setup) {
     setup.each(function(payload) {
       var widget    = payload.widget;
@@ -40,9 +44,12 @@ var Sonia = Class.create({
       }
     }.bind(this));
   },
+
   addWidget: function(widget_id, widget) {
     this.widgets[widget_id] = widget;
+    this.pager.addWidgetToCurrentPage(widget_id);
   },
+
   saveChanges: function() {
     $H(this.widgets).each(function(pair) {
       pair.value.savePosition();
