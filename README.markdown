@@ -4,7 +4,7 @@ Sonia is an Awesome Office Dashboard.
 
 ## What is Sonia?
 
-![Sonia](http://github.com/pusewicz/sonia/tree/4b35cb03417ada6286f76d53a69668e3cbb37203/public/images/screenshot.png?raw=true)
+![Sonia](http://layer22.com/images/screenshot.png)
 
 Sonia allows you to set up a dashboard with information that is important to you. Think [Panic's Status Board](http://www.panic.com/blog/2010/03/the-panic-status-board/).
 
