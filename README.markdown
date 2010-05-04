@@ -30,6 +30,8 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
 
 Have a look in the [Wiki](http://wiki.github.com/pusewicz/sonia/).
 
+Initial documentation is available on [YardDoc](http://yardoc.org/docs/pusewicz-sonia).
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.
