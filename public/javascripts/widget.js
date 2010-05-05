@@ -36,8 +36,11 @@ var Widget = Class.create({
   },
 
   savePosition: function() {
-    var position = { left: this.container.measure("left"), top: this.container.measure("top") };
-    Storage.set(this.attrKey("position"), position);
+    var left = this.container.measure("left");
+    var top  = this.container.measure("top");
+    if(left >= 0 && top >= 0) {
+      Storage.set(this.attrKey("position"), { left: left, top: top });
+    }
   },
 
   restorePosition: function() {
@@ -69,11 +72,9 @@ var Widget = Class.create({
   },
 
   makeDraggable: function() {
-    new Draggable(this.container, { scroll: window, onEnd: function(object, event) {
+    new Draggable(this.container, { onEnd: function() {
       this.savePosition();
       this.setCoordinates();
-      event.stop();
-      return;
-    }});
+    }.bindAsEventListener(this)});
   },
 });
