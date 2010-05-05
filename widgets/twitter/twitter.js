@@ -19,7 +19,7 @@ var Twitter = Class.create(Widget, {
     this.container.insert(this.buildWidgetIcon());
     this.container.insert(this.messagesContainer);
 
-    new Draggable(this.container, { scroll: window });
+    this.makeDraggable();
   },
 
   update: function() {
