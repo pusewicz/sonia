@@ -4,7 +4,7 @@ var Pager = Class.create({
     this.pages = [];
     this.currentPage = 0;
     this.build();
-    setInterval(this.changePage.bind(this), 20 * 100);
+    setInterval(this.changePage.bind(this), 60 * 100);
   },
 
   addWidgetToCurrentPage: function(widgetSha) {
@@ -16,7 +16,7 @@ var Pager = Class.create({
     this.getCurrentPage().push(widgetSha);
     this.update();
     // TODO: Remove this in final version
-    if(this.pages[0].size() == 2) this.currentPage++;
+    if(this.getCurrentPage().size() % 3 == 0) this.currentPage++;
   },
 
   changePage: function() {
@@ -30,8 +30,8 @@ var Pager = Class.create({
   },
 
   transitionToNewPage: function(fromIdx, toIdx) {
-    currentPage = this.pages[fromIdx];
-    nextPage = this.pages[toIdx];
+    var currentPage = this.pages[fromIdx];
+    var nextPage = this.pages[toIdx];
 
     var viewportWidth = document.viewport.getWidth();
     // Prepare next page widgets
