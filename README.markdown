@@ -32,6 +32,8 @@ Have a look in the [Wiki](http://wiki.github.com/pusewicz/sonia/).
 
 Initial documentation is available on [YardDoc](http://yardoc.org/docs/pusewicz-sonia).
 
+Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.
