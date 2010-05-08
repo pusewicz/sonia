@@ -19,59 +19,59 @@ module Sonia
         file.gsub(File.join(Sonia.root, "widgets"), "/stylesheets")
       end
     end
-    
+
     def joined_system_javascript
       files = %w(
-        /javascripts/swfobject.js
-        /javascripts/FABridge.js
-        /javascripts/web_socket.js
-        /javascripts/prototype.js
-        /javascripts/effects.js
-        /javascripts/dragdrop.js
-        /javascripts/livepipe.js
-        /javascripts/window.js
-        /javascripts/resizable.js
-        /javascripts/cookie.js
+        /vendor/swfobject.js
+        /vendor/FABridge.js
+        /vendor/web_socket.js
+        /vendor/prototype.js
+        /vendor/effects.js
+        /vendor/dragdrop.js
+        /vendor/livepipe.js
+        /vendor/window.js
+        /vendor/resizable.js
+        /vendor/cookie.js
         /javascripts/storage.js
         /javascripts/sonia.js
         /javascripts/dispatcher.js
         /javascripts/widget.js
       )
-      
+
       joined_javascript files.map { |file| File.join(Sonia.root, "public", file) }
     end
-    
+
     def joined_system_css
       files = %w(
         /blueprint/reset.css
         /blueprint/grid.css
         /stylesheets/sonia.css
       )
-      
+
       joined_css files.map { |file| File.join(Sonia.root, "public", file) }
     end
-    
+
     def joined_widget_javascript
       joined_javascript Dir[Sonia.root + "/widgets/*/*.js"]
     end
-    
+
     def joined_widget_css
       joined_javascript Dir[Sonia.root + "/widgets/*/*.css"]
     end
-    
+
     def init_javascript
       File.read(File.join(Sonia.root, "public", "javascripts", "init.js"))
     end
-    
+
     private
     def joined_javascript(files)
       javascript = ""
-      
+
       files.each do |file|
         javascript += "/** #{file} **/\n"
         javascript += File.read(file)
       end
-      
+
       javascript
     end
     alias_method :joined_css, :joined_javascript
