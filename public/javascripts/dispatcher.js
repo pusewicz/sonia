@@ -16,18 +16,7 @@ var Dispatcher = Class.create({
         console.log("Missing data in message message:", json.message);
       }
     } else if(json.setup) {
-      var widgets = json.setup;
-      widgets.each(function(payload) {
-        var widget    = payload.widget;
-        var widget_id = payload.widget_id;
-        var config    = payload.config;
-        if(widget && widget_id && config) {
-          var widget_object = eval("new " + widget + "(widget_id, config)");
-          this.sonia.addWidget(widget_id, widget_object);
-        } else {
-          console.log("Missing data in setup message:", json.setup);
-        }
-      }.bind(this));
+      this.sonia.addWidgets(json.setup);
     }
   }
 });

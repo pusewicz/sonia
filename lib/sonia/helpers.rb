@@ -22,17 +22,17 @@ module Sonia
 
     def joined_system_javascript
       files = %w(
-        /javascripts/swfobject.js
-        /javascripts/FABridge.js
-        /javascripts/web_socket.js
-        /javascripts/json2.js
-        /javascripts/prototype.js
-        /javascripts/effects.js
-        /javascripts/dragdrop.js
-        /javascripts/livepipe.js
-        /javascripts/window.js
-        /javascripts/resizable.js
-        /javascripts/cookie.js
+        /vendor/swfobject.js
+        /vendor/FABridge.js
+        /vendor/web_socket.js
+        /vendor/json2.js
+        /vendor/prototype.js
+        /vendor/effects.js
+        /vendor/dragdrop.js
+        /vendor/livepipe.js
+        /vendor/window.js
+        /vendor/resizable.js
+        /vendor/cookie.js
         /javascripts/storage.js
         /javascripts/sonia.js
         /javascripts/dispatcher.js

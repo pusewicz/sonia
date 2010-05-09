@@ -1,17 +1,25 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 body * {
   cursor: default;
 }
 
 body {
-  background: black; /* fallback for older/unsupporting browsers */
-  background-image: -webkit-gradient(linear,
-    left bottom,
-    left top,
-    color-stop(0.12, rgb(77,77,77)),
-    color-stop(0.59, rgb(0,0,0)));
-  color: white;
-  font-size: 14px;
-  font-family: "Optima";
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: #EAEAEA;
+  font-size: 16px;
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
 }
 
 h1 {
@@ -87,4 +95,22 @@ div.widget img.icon {
   height: 64px;
   top: -35px;
   right: 0;
+}
+
+#pager {
+  list-style-type: none;
+  list-style-position: inline;
+  width: 128px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+#pager li {
+  display: inline;
+  color: #363636;
+  padding: 8px 8px;
+}
+
+#pager li.current {
+  color: #EAEAEA;
 }
