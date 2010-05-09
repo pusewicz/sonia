@@ -61,7 +61,7 @@ module Sonia
             connect_to_stream
           }
         else
-          log_unsuccessful_response_body(http1.response)
+          log_unsuccessful_response_body(http.response)
         end
       rescue => e
         log_backtrace(e)
