@@ -17,7 +17,7 @@ var RSS = Class.create(Widget, {
     this.container.insert(this.iconContainer);
     this.container.insert(this.contentContainer);
 
-    new Draggable(this.container, { scroll: window });
+    this.makeDraggable();
   },
 
   update: function() {
