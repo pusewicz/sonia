@@ -10,7 +10,7 @@ var Sonia = Class.create({
     this.websocket.onclose   = this.onclose.bind(this);
     this.websocket.onerror   = this.onerror.bind(this);
 
-    this.pager = new Pager(this);
+    //this.pager = new Pager(this);
   },
   onopen: function() {
     console.log("Socket opened... ");
@@ -47,7 +47,7 @@ var Sonia = Class.create({
 
   addWidget: function(widget_id, widget) {
     this.widgets[widget_id] = widget;
-    this.pager.addWidgetToCurrentPage(widget_id);
+    //this.pager.addWidgetToCurrentPage(widget_id);
   },
 
   saveChanges: function() {
