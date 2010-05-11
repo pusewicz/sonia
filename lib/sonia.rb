@@ -2,6 +2,7 @@ $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 
 require 'logger'
 require 'active_support'
+require 'sonia/version'
 
 # @author Piotr Usewicz
 module Sonia
