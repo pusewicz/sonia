@@ -16,10 +16,10 @@ group :runtime do
   gem "haml", "2.2.24"
 end
 
-#group :test do
-  #gem "rspec"
+group :test do
+  gem "rspec"
   #gem "cucumber"
-#end
+end
 
 group :development do
   gem "yard"

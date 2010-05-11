@@ -18,7 +18,7 @@ var Foursquare = Class.create(Widget, {
     this.container.insert(this.buildWidgetIcon());
     this.container.insert(this.checkinsContainer);
 
-    new Draggable(this.container, { scroll: window });
+    this.makeDraggable();
   },
   update: function() {
     this.checkinsContainer.childElements().invoke('remove');
