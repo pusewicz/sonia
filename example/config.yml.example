@@ -1,53 +1,62 @@
-Twitter:
-  name: twitter
-  title: Our Tweets
-  nitems: 5
-  username: username
-  password: password
-  follow: soniaappcom
+webserver:
+  host: localhost
+  port: 8080
 
-Tfl:
-  name: tfl
-  title: TfL Status
+websocket:
+  host: localhost
+  port: 9090
 
-Foursquare:
-  name: foursquare
-  title: Where we are
-  username: username_email_or_mobile_number
-  password: password
+widgets:
+  Twitter:
+    name: twitter
+    title: Our Tweets
+    nitems: 5
+    username: username
+    password: password
+    follow: soniaappcom
 
-Campfire:
-  nitems: 5
-  name: campfire
-  title: Campfire
-  room_id: 1
-  url: "https://sample.campfirenow.com"
-  token: your_api_key
+  Tfl:
+    name: tfl
+    title: TfL Status
 
-Icinga:
-  name: icinga
-  username: icingaadmin
-  password: icingaadmin
-  title: Icinga Status
-  url: "http://localhost/icinga/cgi-bin/tac.cgi"
+  Foursquare:
+    name: foursquare
+    title: Where we are
+    username: username_email_or_mobile_number
+    password: password
 
-Github:
-  title: Github Commits
-  name: github
-  username: your_username
-  token: your_token
-  nitems: 5
+  Campfire:
+    nitems: 5
+    name: campfire
+    title: Campfire
+    room_id: 1
+    url: "https://sample.campfirenow.com"
+    token: your_api_key
 
-YahooWeather:
-  title: Weather for Paris
-  name: yahoo_weather
-  woeid: 615702
-  units: celsius
+  Icinga:
+    name: icinga
+    username: icingaadmin
+    password: icingaadmin
+    title: Icinga Status
+    url: "http://localhost/icinga/cgi-bin/tac.cgi"
 
-RSS:
-  name: RSS
-  title: Feeds
-  poll_time: 20
-  url: "http://www.engadget.com/rss.xml"
-  xpath: "//item//title"
-  nitems: 5
+  Github:
+    title: Github Commits
+    name: github
+    username: your_username
+    token: your_token
+    nitems: 5
+
+  YahooWeather:
+    title: Weather for Paris
+    name: yahoo_weather
+    woeid: 615702
+    units: celsius
+
+  RSS:
+    name: RSS
+    title: Feeds
+    poll_time: 20
+    url: "http://www.engadget.com/rss.xml"
+    xpath: "//item//title"
+    nitems: 5

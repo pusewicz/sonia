@@ -12,4 +12,18 @@
     %style(type="text/css")= joined_widget_css
     %script(type="text/javascript")= joined_system_javascript
     %script(type="text/javascript")= joined_widget_javascript
-    %script(type="text/javascript")= init_javascript
+    :javascript
+      WebSocket.__swfLocation = "WebSocketMain.swf";
+
+      $(document).observe("dom:loaded", function() {
+        if ("WebSocket" in window) {
+          console.log("WebSocket supported.");
+          window.sonia = new Sonia("#{websocket_url}");
+
+          Event.observe(window, 'beforeunload', function() {
+            window.sonia.saveChanges();
+          });
+        } else {
+            console.log("WebSocket not supported.");
+          }
+      });

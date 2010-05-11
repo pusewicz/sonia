@@ -20,9 +20,22 @@ module Sonia
       end
     end
 
+    def websocket_host
+      Sonia::Server.websocket_host
+    end
+
+    def websocket_port
+      Sonia::Server.websocket_port
+    end
+
+    def websocket_url
+      Sonia::Server.websocket_url
+    end
+
     def joined_system_javascript
       files = %w(
         /vendor/swfobject.js
+        /vendor/console.js
         /vendor/FABridge.js
         /vendor/web_socket.js
         /vendor/json2.js
@@ -58,10 +71,6 @@ module Sonia
 
     def joined_widget_css
       joined_javascript Dir[Sonia.root + "/widgets/*/*.css"]
-    end
-
-    def init_javascript
-      File.read(File.join(Sonia.root, "public", "javascripts", "init.js"))
     end
 
     private
