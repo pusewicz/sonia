@@ -6,6 +6,8 @@ Sonia is an Awesome Office Dashboard.
 
 ![Sonia](http://layer22.com/images/screenshot.png)
 
+<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_users_logo.js"></script>
+
 Sonia allows you to set up a dashboard with information that is important to you. Think [Panic's Status Board](http://www.panic.com/blog/2010/03/the-panic-status-board/).
 
 At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare](http://foursquare.com/), [Github](http://github.com/), [Icinga](http://www.icinga.org/), RSS, [TfL](http://www.tfl.gov.uk/), [Twitter](http://www.twitter.com/) and [Yahoo! Weather](http://weather.yahoo.com/) widgets.
@@ -43,6 +45,11 @@ Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
+
+## Stats
+
+<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_basic_stats.js"></script>
+<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_languages.js"></script>
 
 ## Copyright
 
