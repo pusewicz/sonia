@@ -23,5 +23,12 @@ module Sonia
       require 'sonia'
       IRB.start(__FILE__)
     end
+
+    desc "version", "Prints Sonia's version information"
+    def version
+      require 'sonia/version'
+      puts "Sonia v#{Sonia::VERSION}"
+    end
+    map %w(-v --version) => :version
   end
 end
