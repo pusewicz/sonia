@@ -1,5 +1,9 @@
 /* TfL Lines*/
 
+div.tfl {
+  width: 350px;
+}
+
 div.tfl p {
   position: relative;
   width: 100%;
