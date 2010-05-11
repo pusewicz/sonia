@@ -26,6 +26,7 @@ module Sonia
   module Server
     extend self
 
+    # Defaults
     WEBSOCKET_HOST = "localhost"
     WEBSOCKET_PORT = 8080
 
@@ -77,7 +78,7 @@ module Sonia
     def initialize_widgets
       @widgets = []
 
-      config.each do |widget, config|
+      config.widgets.each do |widget, config|
         class_name = "Sonia::Widgets::#{widget.to_s}"
         log.info("Server") { "Created widget #{widget} with #{config.inspect}" }
         @widgets << module_eval(class_name).new(config)
@@ -88,7 +89,21 @@ module Sonia
     #
     # @return [Hash] Websocket's host and port number
     def websocket_options
-      { :host => WEBSOCKET_HOST, :port => WEBSOCKET_PORT }
+      { :host => websocket_host, :port => websocket_port }
+    end
+
+    # Returns configured websocket hostname
+    #
+    # @return [String] Websocket hostname
+    def websocket_host
+      config.websocket.host || WEBSOCKET_HOST
+    end
+
+    # Returns configured websocket port
+    #
+    # @return [String] Websocket port
+    def websocket_port
+      config.websocket.port || WEBSOCKET_PORT
     end
 
     # Starts WebSocket server
@@ -126,14 +141,39 @@ module Sonia
 
     # Starts Thin WebServer
     def start_web_server
-      Thin::Server.start(WEBSERVER_HOST, WEBSERVER_PORT, ::Sonia::WebServer)
+      Thin::Server.start(
+        webserver_host,
+        webserver_port,
+        ::Sonia::WebServer
+      )
+    end
+
+    # Returns configured webserver host
+    #
+    # @return [String] Webserver host
+    def webserver_host
+      config.webserver.host || WEBSERVER_HOST
+    end
+
+    # Returns configured webserver port
+    #
+    # @return [String] webserver port
+    def webserver_port
+      config.webserver.port || WEBSERVER_PORT
     end
 
     # Returns WebServer URL
     #
     # @return [String] WebServer URL
     def webserver_url
-      "http://#{WEBSERVER_HOST}:#{WEBSERVER_PORT}"
+      "http://#{webserver_host}:#{webserver_port}"
+    end
+
+    # Returns WebSocket URL
+    #
+    # @return [String] WebSocket URL
+    def websocket_url
+      "ws://#{websocket_host}:#{websocket_port}"
     end
   end
 end
