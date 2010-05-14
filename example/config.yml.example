@@ -1,62 +1,67 @@
+# Example configuration file for all Sonia Widgets
+
+# Cofiguration for webserver host and port
 webserver:
   host: localhost
   port: 8080
 
+# Configuration for websocket host and port
 websocket:
   host: localhost
   port: 9090
 
+# Configuration for Widgets
 widgets:
   Twitter:
+    title: Our Tweets   # Title for Twitter widget
     name: twitter
-    title: Our Tweets
-    nitems: 5
-    username: username
-    password: password
-    follow: soniaappcom
+    nitems: 5           # Number of tweets to show
+    username: username  # Username for Twitter account
+    password: password  # Password for Twitter account
+    follow: soniaappcom # What users to follow, and effectively what user's tweets to show
 
   Tfl:
+    title: TfL Status # Title for TFL widget
     name: tfl
-    title: TfL Status
 
   Foursquare:
+    title: Where we are                       # Title for Foursquare widget
     name: foursquare
-    title: Where we are
-    username: username_email_or_mobile_number
-    password: password
+    username: username_email_or_mobile_number # Username for Foursquare account
+    password: password                        # Password for Foursquare account
 
   Campfire:
-    nitems: 5
+    title: Campfire                       # Title for Campfire widget
     name: campfire
-    title: Campfire
-    room_id: 1
-    url: "https://sample.campfirenow.com"
-    token: your_api_key
+    room_id: 1                            # Campfire room id to watch for new messages
+    url: "https://sample.campfirenow.com" # Your Campfire URL
+    token: your_api_key                   # API Token from My Info tab
+    nitems: 5                             # Number of messages to show
 
   Icinga:
+    title: Icinga Status                           # Title for Icinga widget
     name: icinga
-    username: icingaadmin
-    password: icingaadmin
-    title: Icinga Status
-    url: "http://localhost/icinga/cgi-bin/tac.cgi"
+    username: icingaadmin                          # Username for Icinga
+    password: icingaadmin                          # Password for Icinga
+    url: "http://localhost/icinga/cgi-bin/tac.cgi" # URL to tac.cgi
 
   Github:
-    title: Github Commits
+    title: Github Commits   # Title for Github widget
     name: github
-    username: your_username
-    token: your_token
-    nitems: 5
+    username: your_username # Username for Github account
+    token: your_token       # Token for Github account
+    nitems: 5               # Number of commits to show
 
   YahooWeather:
-    title: Weather for Paris
+    title: Weather for Paris # Title for YahooWeather widget
     name: yahoo_weather
-    woeid: 615702
-    units: celsius
+    woeid: 615702            # Where on Earth IDentifier (http://developer.yahoo.com/geo/geoplanet/guide/concepts.html)
+    units: celsius           # Units, either celcius or fahrenheit
 
   RSS:
+    title: Feeds                           # Title for RSS widget
     name: RSS
-    title: Feeds
-    poll_time: 20
-    url: "http://www.engadget.com/rss.xml"
-    xpath: "//item//title"
-    nitems: 5
+    poll_time: 20                          # Poll time frequency
+    url: "http://www.engadget.com/rss.xml" # URL to RSS feed
+    xpath: "//item//title"                 # XPath to content to show
+    nitems: 5                              # Number of RSS items to show
