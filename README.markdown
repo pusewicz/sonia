@@ -4,7 +4,7 @@ Sonia is an Awesome Office Dashboard.
 
 ## What is Sonia?
 
-![Sonia](http://layer22.com/images/screenshot.png)
+![Sonia](http://soniaapp.com/images/screenshot.png)
 
 <script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_users_logo.js"></script>
 
