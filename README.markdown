@@ -12,6 +12,8 @@ Sonia allows you to set up a dashboard with information that is important to you
 
 At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare](http://foursquare.com/), [Github](http://github.com/), [Icinga](http://www.icinga.org/), RSS, [TfL](http://www.tfl.gov.uk/), [Twitter](http://www.twitter.com/) and [Yahoo! Weather](http://weather.yahoo.com/) widgets.
 
+Go ahead and have a look at [the demo](http://demo.soniaapp.com:8080/).
+
 # BYOW
 
 Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at [example](http://github.com/pusewicz/sonia/tree/master/widgets/) ones.
@@ -24,6 +26,12 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
 ## Quick Start
 
     $ git clone http://github.com/pusewicz/sonia.git
+
+    # If you are using RVM (Ruby Version Manager)
+    $ rvm 1.9.1
+    $ rvm gemset create sonia
+
+    # Run Sonia
     $ cd sonia
     $ bundle install
     $ ./bin/sonia start --config example/config.yml
