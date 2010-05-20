@@ -32,8 +32,8 @@ module Sonia
       Sonia::Server.websocket_url
     end
 
-    def joined_system_javascript
-      files = %w(
+    def system_javascripts
+      %w(
         /vendor/swfobject.js
         /vendor/console.js
         /vendor/FABridge.js
@@ -51,39 +51,14 @@ module Sonia
         /javascripts/dispatcher.js
         /javascripts/widget.js
       )
-
-      joined_javascript files.map { |file| File.join(Sonia.root, "public", file) }
     end
 
-    def joined_system_css
-      files = %w(
+    def system_stylesheets
+      %w(
         /blueprint/reset.css
         /blueprint/grid.css
         /stylesheets/sonia.css
       )
-
-      joined_css files.map { |file| File.join(Sonia.root, "public", file) }
     end
-
-    def joined_widget_javascript
-      joined_javascript Dir[Sonia.root + "/widgets/*/*.js"]
-    end
-
-    def joined_widget_css
-      joined_javascript Dir[Sonia.root + "/widgets/*/*.css"]
-    end
-
-    private
-    def joined_javascript(files)
-      javascript = ""
-
-      files.each do |file|
-        javascript += "/** #{file} **/\n"
-        javascript += File.read(file)
-      end
-
-      javascript
-    end
-    alias_method :joined_css, :joined_javascript
   end
 end

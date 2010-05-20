@@ -8,10 +8,10 @@
   %body
     %h1 project sonia
     #widgets
-    %style(type="text/css")= joined_system_css
-    %style(type="text/css")= joined_widget_css
-    %script(type="text/javascript")= joined_system_javascript
-    %script(type="text/javascript")= joined_widget_javascript
+    - (system_stylesheets + widget_stylesheets).each do |stylesheet|
+      %link(href=stylesheet media="screen" rel="stylesheet" type="text/css")
+    - (system_javascripts + widget_javascripts).each do |javascript|
+      %script(type="text/javascript" src=javascript)
     :javascript
       WebSocket.__swfLocation = "WebSocketMain.swf";
 
