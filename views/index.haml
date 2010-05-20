@@ -5,13 +5,13 @@
     %meta(charset="utf-8")
     %link(rel="icon" href="favicon.ico" type="image/x-icon")
     %link(rel="apple-touch-icon" href="/images/sonia_apple_touch.png")
-  %body
-    %h1 project sonia
-    #widgets
     - (system_stylesheets + widget_stylesheets).each do |stylesheet|
       %link(href=stylesheet media="screen" rel="stylesheet" type="text/css")
     - (system_javascripts + widget_javascripts).each do |javascript|
       %script(type="text/javascript" src=javascript)
+  %body
+    %h1 project sonia
+    #widgets
     :javascript
       WebSocket.__swfLocation = "WebSocketMain.swf";
 
