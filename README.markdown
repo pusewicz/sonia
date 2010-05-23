@@ -14,6 +14,8 @@ At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare
 
 Go ahead and have a look at [the demo](http://demo.soniaapp.com:8080/).
 
+Thanks to Aaalex, you can watch a nice screencast introduction to Sonia at [RubyPulse](http://www.rubypulse.com/episode-0.38_sonia.html).
+
 # BYOW
 
 Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at [example](http://github.com/pusewicz/sonia/tree/master/widgets/) ones.
