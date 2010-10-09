@@ -13,7 +13,7 @@
     %h1 project sonia
     #widgets
     :javascript
-      WebSocket.__swfLocation = "WebSocketMain.swf";
+      WEB_SOCKET_SWF_LOCATION = "WebSocketMain.swf";
 
       $(document).observe("dom:loaded", function() {
         if ("WebSocket" in window) {
