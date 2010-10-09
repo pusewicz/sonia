@@ -22,7 +22,7 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
 
 ## Requirements
 
-* Ruby 1.9.1
+* Ruby 1.9.2
 * Bundler gem `gem install bundler`
 
 ## Quick Start
