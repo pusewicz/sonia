@@ -56,11 +56,6 @@ Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-## Stats
-
-<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_basic_stats.js"></script>
-<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_languages.js"></script>
-
 ## Copyright
 
 Copyright (c) 2010 Piotr Usewicz. See LICENSE for details.
