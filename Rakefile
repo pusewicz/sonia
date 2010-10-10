@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'rake'
 require 'bundler'
 
 begin
@@ -9,7 +10,9 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require 'rake'
+$LOAD_PATH.unshift('lib')
+
+require 'sonia'
 
 begin
   require 'jeweler'
@@ -20,6 +23,8 @@ begin
     gem.email = "piotr@layer22.com"
     gem.homepage = "http://github.com/pusewicz/sonia"
     gem.authors = ["Piotr Usewicz"]
+    gem.executables = ['sonia']
+    gem.version = Sonia::VERSION
     # gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem.add_development_dependency "yard", ">= 0"
     # gem.add_development_dependency "cucumber", ">= 0"
