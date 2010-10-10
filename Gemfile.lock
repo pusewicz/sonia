@@ -51,6 +51,7 @@ DEPENDENCIES
   em-http-request (= 0.2.14)
   em-websocket (= 0.1.4)
   eventmachine (= 0.12.10)
+  gemcutter
   haml (= 3.0.21)
   jeweler
   launchy (= 0.3.7)

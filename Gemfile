@@ -25,5 +25,6 @@ group :development do
   gem "yard"
   #gem "ruby_core_source"
   gem "jeweler"
+  gem "gemcutter"
   #gem "ruby-debug19"
 end
