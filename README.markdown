@@ -30,7 +30,7 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
     $ git clone http://github.com/pusewicz/sonia.git
 
     # If you are using RVM (Ruby Version Manager)
-    $ rvm 1.9.1
+    $ rvm 1.9.2
     $ rvm gemset create sonia
 
     # Run Sonia
