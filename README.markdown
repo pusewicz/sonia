@@ -1,4 +1,4 @@
-# Sonia
+# Sonia ![Still Maintained](http://stillmaintained.com/pusewicz/sonia.png)
 
 Sonia is an Awesome Office Dashboard.
 
