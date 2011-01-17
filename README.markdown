@@ -8,6 +8,9 @@ Sonia is an Awesome Office Dashboard.
 
 <script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_users_logo.js"></script>
 
+<a href="http://flattr.com/thing/118361/Awesome-Office-Dashboard" target="_blank">
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+
 Sonia allows you to set up a dashboard with information that is important to you. Think [Panic's Status Board](http://www.panic.com/blog/2010/03/the-panic-status-board/).
 
 At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare](http://foursquare.com/), [Github](http://github.com/), [Icinga](http://www.icinga.org/), RSS, [TfL](http://www.tfl.gov.uk/), [Twitter](http://www.twitter.com/) and [Yahoo! Weather](http://weather.yahoo.com/) widgets.
