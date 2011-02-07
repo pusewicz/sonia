@@ -1,6 +1,6 @@
 source :gemcutter
 
-group :runtime do
+group :production do
   gem "activesupport", "3.0.3"
   gem "twitter-stream", "0.1.10"
   gem "eventmachine", "0.12.10"
