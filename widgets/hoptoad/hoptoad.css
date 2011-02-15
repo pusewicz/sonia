@@ -6,21 +6,20 @@ div.hoptoad .content img {
   height: 32px;
 }
 
-div.hoptoad span.app_name {
+div.hoptoad td.app_name {
     font-size: 14pt;
     padding-left: 1em;
+    min-width: 300px;
 }
 
-div.hoptoad span.no_app_errors {
+div.hoptoad td.no_app_errors {
     font-weight: bold;
     color: green;
-    padding-left: 10em;
     font-size: 14pt;
 }
-div.hoptoad span.app_errors {
+div.hoptoad td.app_errors {
     color: red;
     font-weight: bold;
-    padding-left: 10em;
     font-size: 14pt;
 }
 
