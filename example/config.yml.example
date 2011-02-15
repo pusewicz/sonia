@@ -65,3 +65,9 @@ widgets:
     url: "http://www.engadget.com/rss.xml" # URL to RSS feed
     xpath: "//item//title"                 # XPath to content to show
     nitems: 5                              # Number of RSS items to show
+
+  Hoptoad:
+    title: Apps errors
+    name: hoptoad
+    account: foo
+    auth_key: foobarbaz

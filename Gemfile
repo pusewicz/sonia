@@ -14,6 +14,8 @@ group :production do
   gem "thin", "1.2.7"
   gem "sinatra", "1.1.2"
   gem "haml", "3.0.25"
+  gem "i18n"
+  gem "roxml"
 end
 
 group :test do
