@@ -1,0 +1,29 @@
+/* Hoptoad */
+
+div.hoptoad { width: 330px; }
+div.hoptoad .content img {
+  width: 32px;
+  height: 32px;
+}
+
+div.hoptoad span.app_name {
+    font-size: 14pt;
+    padding-left: 1em;
+}
+
+div.hoptoad span.no_app_errors {
+    font-weight: bold;
+    color: green;
+    padding-left: 10em;
+    font-size: 14pt;
+}
+div.hoptoad span.app_errors {
+    color: red;
+    font-weight: bold;
+    padding-left: 10em;
+    font-size: 14pt;
+}
+
+div.hoptoad .content p {
+  line-height: 24px;
+}
