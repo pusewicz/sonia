@@ -31,7 +31,7 @@ var Hoptoad = Class.create(Widget, {
           var class_errors = "app_errors";
       }
       var app_errors = new Element('div', { className: 'app_errors' }).update(
-        '<span class="app_name">' + message.name + '</span>: <span class="' + class_errors + '">' + message.errors + '</span>'
+          '<table><tr><td class="app_name">' + message.name + '</td><td class="' + class_errors + '">' + message.errors + '</td></tr></table>'
       );
       cont.insert(app_errors);
       cont.insert(new Element('hr' ));
