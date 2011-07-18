@@ -10,7 +10,7 @@ group :production do
   gem "rake", "0.8.7"
   gem "thor", "0.14.6"
   gem "nokogiri", "1.4.4"
-  gem "launchy", "0.3.7"
+  gem "launchy", "2.0.3"
   gem "thin", "1.2.7"
   gem "sinatra", "1.1.2"
   gem "haml", "3.0.25"
