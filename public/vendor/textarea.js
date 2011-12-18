@@ -22,7 +22,7 @@ Control.TextArea = Class.create({
         $(this.element).observe('paste',this.doOnChange.bindAsEventListener(this));
         $(this.element).observe('input',this.doOnChange.bindAsEventListener(this));
         if(!!document.selection){
-            $(this.element).observe('mouseup',this.saveRange.bindAsEventListener(this));  
+            $(this.element).observe('mouseup',this.saveRange.bindAsEventListener(this));
             $(this.element).observe('keyup',this.saveRange.bindAsEventListener(this));
         }
     },
@@ -34,7 +34,7 @@ Control.TextArea = Class.create({
         }.bind(this),Control.TextArea.onChangeTimeoutLength);
     },
     saveRange: function(){
-        this.range = document.selection.createRange();  
+        this.range = document.selection.createRange();
     },
     getValue: function(){
         return this.element.value;
@@ -66,9 +66,9 @@ Control.TextArea = Class.create({
     wrapSelection: function(before,after){
         var sel = this.getSelection();
         // Remove the wrapping if the selection has the same before/after
-        if (sel.indexOf(before) === 0 && 
+        if (sel.indexOf(before) === 0 &&
             sel.lastIndexOf(after) === (sel.length - after.length)) {
-            this.replaceSelection(sel.substring(before.length, 
+            this.replaceSelection(sel.substring(before.length,
                 sel.length - after.length));
         } else { this.replaceSelection(before + sel + after); }
     },

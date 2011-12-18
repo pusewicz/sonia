@@ -14,7 +14,7 @@ if(typeof(Prototype) == "undefined") {
     throw "Event.Behavior requires Prototype to be loaded."; }
 if(typeof(Object.Event) == "undefined") {
     throw "Event.Behavior requires Object.Event to be loaded."; }
-    
+
 Event.Behavior = {
     addVerbs: function(verbs){
         var v;
@@ -66,7 +66,7 @@ Object.extend(Event.Behavior.Verb.prototype,{
     setOpposite: function(opposite_verb){
         var opposite_action = opposite_verb.originalAction;
         this.executeOpposite = function(opposite_action,target,argument){
-            return (argument) ? opposite_action(target,argument) : 
+            return (argument) ? opposite_action(target,argument) :
                 opposite_action(target);
         }.bind(this,opposite_action);
     },
@@ -133,12 +133,12 @@ Object.extend(Event.Behavior.Noun.prototype,{
         this.argument = argument;
     },
     execute: function(){
-        return (this.target) ? this.verb.execute(this.target,this.argument) : 
+        return (this.target) ? this.verb.execute(this.target,this.argument) :
             this.verb.execute(this.argument);
     },
     executeOpposite: function(){
-        return (this.target) ? 
-            this.verb.executeOpposite(this.target,this.argument) : 
+        return (this.target) ?
+            this.verb.executeOpposite(this.target,this.argument) :
             this.verb.executeOpposite(this.argument);
     },
     when: function(subject){
@@ -223,7 +223,7 @@ Object.extend(Event.Behavior.Adjective.prototype,{
         if(this.conditions.length === 0) { return true; }
         else {
             return this.conditions.inject(false, function (bool,condition) {
-                return (condition[0] === 'or') ? 
+                return (condition[0] === 'or') ?
                        (bool && condition[1]()) : (bool || condition[1]());
             });
         }
@@ -256,7 +256,7 @@ Object.extend(Event.Behavior.Adjective.prototype,{
     within: function(item){
         this.lastConditionName = 'within';
         this.attachCondition(function(item){
-            
+
         }.bind(this,item));
         this.attachObserver(true);
         return this;

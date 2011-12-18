@@ -30,8 +30,8 @@ var HotKey = Class.create({
 
         // All custom hotkey events should stop after their custom actions.
         this.callback = function (event) {
-            if (!(this.options.fireOnce && this.fired) && Object.isFunction(callback)) { 
-                callback(event); 
+            if (!(this.options.fireOnce && this.fired) && Object.isFunction(callback)) {
+                callback(event);
             }
             if (!this.options.bubbleEvent) { event.stop(); }
             this.fired = true;
