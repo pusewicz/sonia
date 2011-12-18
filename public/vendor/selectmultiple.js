@@ -35,8 +35,8 @@ Control.SelectMultiple = Class.create({
         Object.extend(this.options,options || {});
         this.select = $(select);
         this.container =  $(container);
-        this.checkboxes = (typeof(this.options.checkboxSelector) == 'function') ? 
-            this.options.checkboxSelector.bind(this)() : 
+        this.checkboxes = (typeof(this.options.checkboxSelector) == 'function') ?
+            this.options.checkboxSelector.bind(this)() :
             this.container.getElementsBySelector(this.options.checkboxSelector);
         var value_was_set = false;
         if(this.options.value){
@@ -89,8 +89,8 @@ Control.SelectMultiple = Class.create({
         this.notify('afterChange',this.select.options[this.select.options.selectedIndex].value);
     },
     checkboxOnClick: function(checkbox){
-        this.numberOfCheckedBoxes = this.checkboxes.findAll(function (c) { 
-            return c.checked; 
+        this.numberOfCheckedBoxes = this.checkboxes.findAll(function (c) {
+            return c.checked;
         }).length;
         this.scanCheckBoxes();
         this.notify('afterChange', this.numberOfCheckedBoxes === 0 ? "" :
@@ -120,16 +120,16 @@ Control.SelectMultiple = Class.create({
         }
     },
     getLabelForExtraOption: function(){
-        var label = (typeof(this.options.nameSelector) == 'function' ? 
-            this.options.nameSelector.bind(this)() : 
+        var label = (typeof(this.options.nameSelector) == 'function' ?
+            this.options.nameSelector.bind(this)() :
             this.container.getElementsBySelector(this.options.nameSelector).inject([],function(labels,name_element,i){
                 if(this.checkboxes[i].checked) {
                     labels.push(name_element.innerHTML); }
                 return labels;
             }.bind(this))
         ).join(this.options.labelSeparator);
-        return (label.length >= this.options.overflowLength && this.options.overflowLength > 0) ? 
-            (typeof(this.options.overflowString) == 'function' ? this.options.overflowString(label) : this.options.overflowString) : 
+        return (label.length >= this.options.overflowLength && this.options.overflowLength > 0) ?
+            (typeof(this.options.overflowString) == 'function' ? this.options.overflowString(label) : this.options.overflowString) :
             label;
     },
     getValueForExtraOption: function(){

@@ -9,7 +9,7 @@
 
 if(typeof(Control) == 'undefined')
     Control = {};
-    
+
 var $proc = function(proc){
     return typeof(proc) == 'function' ? proc : function(){return proc};
 };
@@ -141,7 +141,7 @@ var IframeShim = Class.create({
         this.element = new Element('iframe',{
             style: 'position:absolute;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);display:none',
             src: 'javascript:void(0);',
-            frameborder: 0 
+            frameborder: 0
         });
         $(document.body).insert(this.element);
     },

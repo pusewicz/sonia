@@ -4,7 +4,7 @@
 // Reference: http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol
 
 (function() {
-  
+
   if (window.WebSocket) return;
 
   var console = window.console;
@@ -33,7 +33,7 @@
       });
     }, 1);
   }
-  
+
   WebSocket.prototype.__createFlash = function(url, protocol, proxyHost, proxyPort, headers) {
     var self = this;
     self.__flash =
@@ -359,7 +359,7 @@
       WebSocket.__tasks.push(task);
     }
   };
-  
+
   WebSocket.__isFlashLite = function() {
     if (!window.navigator || !window.navigator.mimeTypes) return false;
     var mimeType = window.navigator.mimeTypes["application/x-shockwave-flash"];
@@ -384,5 +384,5 @@
       window.attachEvent("onload", WebSocket.__initialize);
     }
   }
-  
+
 })();
