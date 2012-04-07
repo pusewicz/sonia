@@ -6,11 +6,6 @@ Sonia is an Awesome Office Dashboard.
 
 ![Sonia](http://soniaapp.com/images/screenshot.png)
 
-<script type="text/javascript" src="http://www.ohloh.net/p/482920/widgets/project_users_logo.js"></script>
-
-<a href="http://flattr.com/thing/118361/Awesome-Office-Dashboard" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
-
 Sonia allows you to set up a dashboard with information that is important to you. Think [Panic's Status Board](http://www.panic.com/blog/2010/03/the-panic-status-board/).
 
 At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare](http://foursquare.com/), [Github](http://github.com/), [Icinga](http://www.icinga.org/), RSS, [TfL](http://www.tfl.gov.uk/), [Twitter](http://www.twitter.com/) and [Yahoo! Weather](http://weather.yahoo.com/) widgets.
@@ -25,7 +20,7 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
 
 ## Requirements
 
-* Ruby 1.9.2
+* Ruby 1.9.3
 * Bundler gem `gem install bundler`
 
 ## Quick Start
@@ -33,13 +28,13 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
     $ git clone http://github.com/pusewicz/sonia.git
 
     # If you are using RVM (Ruby Version Manager)
-    $ rvm 1.9.2
+    $ rvm 1.9.3
     $ rvm gemset create sonia
 
     # Run Sonia
     $ cd sonia
     $ bundle install
-    $ ./bin/sonia start --config example/config.yml
+    $ bundle exec ./bin/sonia start --config example/config.yml
 
 ## More Information
 
@@ -61,4 +56,4 @@ Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
 
 ## Copyright
 
-Copyright (c) 2010 Piotr Usewicz. See LICENSE for details.
+Copyright (c) 2012 Piotr Usewicz. See LICENSE for details.
