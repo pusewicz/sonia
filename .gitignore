@@ -7,3 +7,4 @@ tmp/**/*
 example/config.yml
 .yardoc/
 doc/
+vendor/cache
