@@ -5,18 +5,6 @@ require "yajl"
 require "yaml"
 require "thin"
 
-# monkey patch pending fix
-module EventMachine
-  module WebSocket
-    class Connection < EventMachine::Connection
-      def send(data)
-        debug [:send, data]
-        send_data("\x00#{data.force_encoding(Encoding::ASCII_8BIT)}\xff")
-      end
-    end
-  end
-end
-
 module Sonia
   # Main Sonia event loop
   #
