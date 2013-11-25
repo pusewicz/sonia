@@ -57,3 +57,7 @@ Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
 ## Copyright
 
 Copyright (c) 2012 Piotr Usewicz. See LICENSE for details.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pusewicz/sonia/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
