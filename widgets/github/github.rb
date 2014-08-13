@@ -1,7 +1,9 @@
+require 'json'
+
 module Sonia
   module Widgets
     class Github < Sonia::Widget
-      REPOSITIORIES_URL      = "http://github.com/api/v2/yaml/repos/show/%s"
+      REPOSITIORIES_URL      = "https://api.github.com/users/%s/repos"
       NETWORK_META_URL       = "%s://github.com/%s/%s/network_meta"
       NETWORK_DATA_CHUNK_URL = "%s://github.com/%s/%s/network_data_chunk?nethash=%s"
 
@@ -38,7 +40,7 @@ module Sonia
 
       def handle_repositories_response(http)
         if http.response_header.status == 200
-          @repositories = parse_yaml(http.response)["repositories"]
+          @repositories = parse_json(http.response)
         else
           log_unsuccessful_response_body(http.response)
         end
@@ -49,9 +51,9 @@ module Sonia
       def fetch_nethashes(&blk)
         multi = EventMachine::MultiRequest.new
         @repositories.each do |repo|
-          url = network_meta_url(repo[:name])
+          url = network_meta_url(repo['name'])
           log_info "Polling `#{url}'"
-          multi.add(EventMachine::HttpRequest.new(url).get(auth_data))
+          multi.add(repo['name'], EventMachine::HttpRequest.new(url).get(auth_data))
         end
         multi.errback { log_fatal_error(multi) }
         multi.callback {
@@ -61,15 +63,15 @@ module Sonia
       end
 
       def handle_nethashes_response(multi)
-        @nethashes = multi.responses[:succeeded].map do |response|
+        @nethashes = multi.responses[:callback].map do |response|
           begin
-            if response.response_header.status == 200
-              payload = parse_json(response.response)
+            if response[1].response_header.status == 200
+              payload = parse_json(response[1].response)
               nethash = payload["nethash"]
               repo    = payload["users"].first["repo"]
               { :repo => repo, :nethash => nethash }
             else
-              log_unsuccessful_response_body(response.response)
+              log_unsuccessful_response_body(response[1].response)
               nil
             end
           rescue => e
@@ -86,7 +88,7 @@ module Sonia
         @nethashes.each do |nethash|
           url = network_data_chunk_url(nethash[:repo], nethash[:nethash])
           log_info "Polling `#{url}'"
-          multi.add(EventMachine::HttpRequest.new(url).get(auth_data))
+          multi.add(nethash[:repo], EventMachine::HttpRequest.new(url).get(auth_data))
         end
         multi.errback { log_fatal_error(multi) }
         multi.callback {
@@ -96,11 +98,11 @@ module Sonia
 
       def handle_commits_response(multi)
         require 'pp'
-        commits = multi.responses[:succeeded].map do |response|
+        commits = multi.responses[:callback].map do |response|
           begin
-            nethash = response.instance_variable_get(:@uri).query.split("nethash=").last
+            nethash = response[1].req.uri.query.split("nethash=").last
             repo = repo_name_for_nethash(nethash)
-            commits = parse_json(response.response)["commits"].map { |commit|
+            commits = parse_json(response[1].response)["commits"].map { |commit|
               commit["repository"] = repo
               commit
             }
@@ -124,18 +126,17 @@ module Sonia
 
       def network_meta_url(repo)
         repository = repo(repo)
-        is_private = repository[:private] ? 'https' : 'http'
-        NETWORK_META_URL % [is_private, config.username, repo]
+        NETWORK_META_URL % ['https', config.username, repo]
       end
 
       def network_data_chunk_url(repo, nethash)
         repository = repo(repo)
-        is_private = repository[:private] ? 'https' : 'http'
+        is_private = 'https'
         NETWORK_DATA_CHUNK_URL % [is_private, config.username, repo, nethash]
       end
 
       def repo(repo)
-        @repositories.detect { |r| r[:name] == repo }
+        @repositories.detect { |r| r['name'] == repo }
       end
 
       def repo_name_for_nethash(nethash)

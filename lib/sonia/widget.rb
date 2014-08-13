@@ -1,4 +1,4 @@
-require "yajl"
+require "oj"
 require "yaml"
 require "nokogiri"
 require "digest/sha1"
@@ -32,18 +32,11 @@ module Sonia
       ].join)
     end
 
-    # Returns JSON encode
+    # Returns JSON string
     #
-    # @return [Yajl::Encoder]
-    def encoder
-      @encoder ||= Yajl::Encoder.new
-    end
-
-    # Returns JSON parser
-    #
-    # @return [Yajl::Parser]
-    def parser
-      @decoder ||= Yajl::Parser.new
+    # @return [String]
+    def encode_json(payload)
+      Oj.dump payload
     end
 
     # Parses JSON
@@ -51,7 +44,7 @@ module Sonia
     # @param [String] payload JSON string
     # @return [Hash] Parsed JSON represented as a hash
     def parse_json(payload)
-      Yajl::Parser.parse(payload)
+      Oj.load(payload)
     end
 
     # Parses YAML
@@ -71,7 +64,7 @@ module Sonia
     end
 
     # Used to push initial data after setup
-    #def initial_push; end
+    # def initial_push; end
 
     # Subscribes a websocket to widget's data channel
     #
@@ -102,7 +95,7 @@ module Sonia
 
       message = { :message => payload }
 
-      channel.push self.encoder.encode(message)
+      channel.push self.encode_json(message)
     ensure
       log.info(widget_name) { "Pushing #{message.inspect} via #{channel}" }
     end

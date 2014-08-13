@@ -3,10 +3,10 @@ require 'twitter/json_stream'
 module Sonia
   module Widgets
     class Twitter < Sonia::Widget
-      FRIENDS_URL           = "http://api.twitter.com/1/statuses/friends/%s.json"
-      CREATE_FRIENDSHIP_URL = "http://api.twitter.com/1/friendships/create/%s.json?follow=true"
-      USER_LOOKUP_URL       = "http://api.twitter.com/1/users/lookup.json?screen_name=%s"
-      FRIENDS_TIMELINE_URL  = "http://api.twitter.com/1/statuses/friends_timeline.json?count=%s"
+      FRIENDS_URL           = "https://api.twitter.com/1/statuses/friends/%s.json"
+      CREATE_FRIENDSHIP_URL = "https://api.twitter.com/1/friendships/create/%s.json?follow=true"
+      USER_LOOKUP_URL       = "https://api.twitter.com/1/users/lookup.json?screen_name=%s"
+      FRIENDS_TIMELINE_URL  = "https://api.twitter.com/1/statuses/friends_timeline.json?count=%s"
 
       def initialize(config)
         super(config)

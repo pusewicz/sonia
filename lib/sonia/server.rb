@@ -1,7 +1,6 @@
 require "eventmachine"
 require "em-websocket"
 require 'em-http'
-require "yajl"
 require "yaml"
 require "thin"
 
@@ -101,7 +100,7 @@ module Sonia
           @widgets.map { |widget| widget.subscribe!(ws) }
 
           setup_message = { :setup => @widgets.map { |widget| widget.setup } }
-          ws.send Yajl::Encoder.encode(setup_message)
+          ws.send Oj.dump(setup_message)
 
           log.info("Server") { "Sent setup #{setup_message.inspect}" }
 
