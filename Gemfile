@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "activesupport"
+gem "activesupport", "~> 3.2.22"
 gem "twitter-stream"
 gem "eventmachine"
 gem "em-websocket"
@@ -8,12 +8,12 @@ gem "em-http-request"
 gem "yajl-ruby"
 gem "rake"
 gem "thor"
-gem "nokogiri"
+gem "nokogiri", "~> 1.6.6.4"
 gem "launchy"
 gem "thin"
 gem "sinatra"
 gem "haml"
-gem "i18n"
+gem "i18n", ">= 0.6.6"
 gem "roxml"
 
 group :test do
@@ -25,3 +25,5 @@ group :development do
   gem "jeweler"
   gem "gemcutter"
 end
+
+gem "rack", "~> 1.5.4"
