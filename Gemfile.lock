@@ -33,7 +33,7 @@ GEM
       addressable (~> 2.3)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     public_suffix (3.0.3)
     rack (1.6.11)
