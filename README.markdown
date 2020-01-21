@@ -10,8 +10,6 @@ Sonia allows you to set up a dashboard with information that is important to you
 
 At the moment, Sonia comes with [Campfire](http://campfirenow.com/), [Foursquare](http://foursquare.com/), [Github](http://github.com/), [Icinga](http://www.icinga.org/), RSS, [TfL](http://www.tfl.gov.uk/), [Twitter](http://www.twitter.com/) and [Yahoo! Weather](http://weather.yahoo.com/) widgets.
 
-Go ahead and have a look at [the demo](http://demo.soniaapp.com:8080/).
-
 Thanks to Aaalex, you can watch a nice screencast introduction to Sonia at [RubyPulse](http://www.rubypulse.com/episode-0.38_sonia.html).
 
 # BYOW
@@ -37,10 +35,6 @@ Bring Your Own Widgets! It's so easy to create your own widgets! Have a look at 
     $ bundle exec ./bin/sonia start --config example/config.yml
 
 ## More Information
-
-Have a look in the [Wiki](http://wiki.github.com/pusewicz/sonia/).
-
-Initial documentation is available on [YardDoc](http://yardoc.org/docs/pusewicz-sonia).
 
 Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
 
