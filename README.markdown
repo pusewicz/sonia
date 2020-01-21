@@ -56,4 +56,4 @@ Follow Sonia on [Twitter](http://www.twitter.com/soniaappcom).
 
 ## Copyright
 
-Copyright (c) 2012 [Piotr Usewicz](https://www.layer22.com). See LICENSE for details.
+Copyright (c) 2012 [Piotr Usewicz](http://www.layer22.com). See LICENSE for details.
