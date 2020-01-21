@@ -1,4 +1,4 @@
-# Sonia ![Still Maintained](http://stillmaintained.com/pusewicz/sonia.png)&nbsp;![Dependencies](https://gemnasium.com/pusewicz/sonia.png?travis)
+# Sonia (archived, read-only repository)
 
 Sonia is an Awesome Office Dashboard.
 
